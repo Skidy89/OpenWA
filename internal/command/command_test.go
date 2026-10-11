@@ -166,8 +166,6 @@ func TestMatching(t *testing.T) {
 	}
 }
 
-
-
 func TestParseNumber(t *testing.T) {
 	s := "/purge 25"
 	in, ok := Parse(s, len([]rune(s)), nil, nil)

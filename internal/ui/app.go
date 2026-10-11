@@ -52,13 +52,20 @@ type UI struct {
 	// doodles draws the wallpaper's doodles behind conversations.
 	doodles bool
 	// zoom scales the whole window (scale.go).
-	zoom   zoomState
-	now    func() time.Time
-	window *app.Window // nil when rendering headless
-	host   *host       // nil when rendering headless (see Run)
-	deco   widget.Decorations
-	mobile bool
-	phoneEditor widget.Editor
+	zoom         zoomState
+	now          func() time.Time
+	window       *app.Window // nil when rendering headless
+	host         *host       // nil when rendering headless (see Run)
+	deco         widget.Decorations
+	mobile       bool
+	phonePairing bool
+	countryCode  widget.Editor
+	phoneNumber  widget.Editor
+	verifyCode   widget.Editor
+	verifyStep   bool
+	verifyFrom   bool
+	verifyAnim   tween
+	verifyFading bool
 	// winWidth is the window width in px, for panels sized relative to it.
 	winWidth int
 
@@ -941,6 +948,15 @@ func (u *UI) layoutWithInfo(gtx C) D {
 
 // update handles input events before anything is drawn.
 func (u *UI) update(gtx C) {
+	if u.mobile {
+		// Gio's Android activity finishes when Back is not consumed. Keep the
+		// window alive; Android's Home/app switcher still backgrounds it normally.
+		for {
+			if _, ok := gtx.Event(key.Filter{Name: key.NameBack}); !ok {
+				break
+			}
+		}
+	}
 	for {
 		ev, ok := gtx.Event(key.Filter{Name: key.NameEscape})
 		if !ok {

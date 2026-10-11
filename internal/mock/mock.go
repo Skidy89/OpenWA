@@ -112,6 +112,9 @@ func (b *Backend) Start(notify func()) {
 	}
 	b.emit(model.ConnEvent{State: model.StateOnline, Me: me, MeID: "me@lid"})
 }
+func (b *Backend) RequestPairingCode(phoneNumber string) (string, error) {
+	return "12345678", nil
+}
 
 func (b *Backend) ReportTyping(chatID string) {}
 

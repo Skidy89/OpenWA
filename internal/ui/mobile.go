@@ -68,7 +68,9 @@ func (u *UI) layoutMobileNavigation(gtx C) D {
 		item(&u.rail.status, u.page == pageStatus,
 			func(gtx C, col color.NRGBA) D { return statusIcon(gtx, 24, col, u.page == pageStatus) }, 0, statusUnseen),
 		item(&u.rail.channels, u.page == pageChannels,
-			func(gtx C, col color.NRGBA) D { return channelsIcon(gtx, 24, col, p.RailActive, u.page == pageChannels) }, 0, channelUnread),
+			func(gtx C, col color.NRGBA) D {
+				return channelsIcon(gtx, 24, col, p.RailActive, u.page == pageChannels)
+			}, 0, channelUnread),
 		item(&u.rail.communities, u.page == pageCommunities,
 			func(gtx C, col color.NRGBA) D { return drawIcon(gtx, icGroupsLine, 24, col) }, 0, false),
 		item(&u.rail.profile, u.page == pageSettings,

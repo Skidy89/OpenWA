@@ -265,8 +265,6 @@ func TestExtrasOffByDefault(t *testing.T) {
 	}
 }
 
-
-
 // TestNoteBeforeMessages checks that a note older than every loaded
 // message still shows when the chat's start is loaded: the demo chat's
 // messages are from 09:00 today, so a test run early in the day used to

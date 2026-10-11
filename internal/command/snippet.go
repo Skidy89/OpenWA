@@ -3,6 +3,8 @@ package command
 import (
 	"errors"
 	"strings"
+
+	"github.com/skidy89/openWA/internal/model"
 )
 
 func runSnippet(c *Context) error {
@@ -74,6 +76,13 @@ func saveSnippet(c *Context, name string) error {
 func runCatch(c *Context) error {
 	if c.Reply == nil {
 		return errors.New("Reply to a message, then use /catch.")
+	}
+	if c.Reply.Kind == model.KindUnsupported {
+		// just send the user a warning that catching the message may not work
+		note := c.note()
+		note.Text = "Warning: This message type may not be supported by the snippet feature."
+		note.Buttons = []Button{{Label: "Continue", Run: func() { c.Do(func() func() { return func() { c.ShowPayload(c.Reply.ChatID, c.Reply.ID) } }) }}}
+		return nil
 	}
 	c.ShowPayload(c.Reply.ChatID, c.Reply.ID)
 	return nil

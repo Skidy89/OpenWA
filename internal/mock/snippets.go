@@ -277,7 +277,11 @@ func messageJSON(m *model.Message) (string, error) {
 // Demo messages have synthetic payloads; real captures use the wa backend.
 func (b *Backend) MessagePayload(chat, id string) (string, error) {
 	if m := b.message(chat, id); m != nil {
-		return messageJSON(m)
+		str, err := messageJSON(m)
+		if err != nil {
+			return "", err
+		}
+		return str, nil
 	}
 	return "", errors.New("This message is no longer stored.")
 }

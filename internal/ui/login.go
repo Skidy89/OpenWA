@@ -31,6 +31,73 @@ var historyChoices = []struct{ val, name string }{
 }
 
 func (u *UI) updateLogin(gtx C) {
+	if !u.mobile && !u.phonePairing && u.conn.State == model.StateQR && u.btn("login:mobile-pair").Clicked(gtx) {
+		u.phonePairing = true
+	}
+	if !u.mobile && u.phonePairing && u.btn("login:mobile-pair-back").Clicked(gtx) {
+		u.phonePairing = false
+		u.verifyStep = false
+		u.verifyFading = false
+		u.verifyCode.SetText("")
+	}
+	if u.mobile || u.phonePairing {
+		if u.verifyStep {
+			if u.btn("login:code-back").Clicked(gtx) {
+				u.beginMobileLoginTransition(false)
+				u.verifyCode.SetText("")
+			}
+			if u.btn("login:code-resend").Clicked(gtx) {
+				country, number := u.countryCode.Text(), u.phoneNumber.Text()
+				// if country is 52, we should add the 1 if it doesnt have it
+				var PhoneNumber string
+				if country == "52" && len(number) == 10 {
+					PhoneNumber = country + "1" + number
+				} else {
+					PhoneNumber = country + number
+				}
+				u.toast("Sending verification code... to +" + PhoneNumber)
+				code, err := u.backend.RequestPairingCode(PhoneNumber)
+				if err != nil {
+					u.toast("Error sending verification code: " + err.Error())
+					return
+				}
+				u.verifyCode.SetText(code)
+			}
+		} else if u.btn("login:pair").Clicked(gtx) {
+			country, number := u.countryCode.Text(), u.phoneNumber.Text()
+			// if country is 52, we should add the 1 if it doesnt have it
+			var PhoneNumber string
+			if country == "52" && len(number) == 10 {
+				PhoneNumber = country + "1" + number
+			} else {
+				PhoneNumber = country + number
+			}
+			if len(country) >= 1 && len(country) <= 3 && len(number) >= 7 && len(country)+len(number) <= 15 {
+				if u.mobile {
+					u.setHistory(u.recentHistory())
+				}
+				u.toast("Sending verification code... to +" + PhoneNumber)
+				code, err := u.backend.RequestPairingCode(PhoneNumber)
+				if err != nil {
+					u.toast("Error sending verification code: " + err.Error())
+					return
+				}
+				u.beginMobileLoginTransition(true)
+				u.verifyCode.SetText(code)
+				if u.conn.State == model.StateError && u.conn.Err != "" {
+					u.toast("Error: " + u.conn.Err)
+				}
+				switch u.conn.State {
+				case model.StateQR, model.StateStarting:
+					u.toast("Verification code sent to +" + PhoneNumber)
+				case model.StateQRExpired, model.StateError:
+					u.toast("Verification code expired or error occurred. Please try again.")
+				default:
+					u.toast("Verification code expired or error occurred. Please try again.")
+				}
+			}
+		}
+	}
 	if u.login.retry.Clicked(gtx) {
 		u.backend.Retry()
 	}
@@ -45,6 +112,13 @@ func (u *UI) updateLogin(gtx C) {
 			u.setHistory(c.val)
 		}
 	}
+}
+
+func (u *UI) beginMobileLoginTransition(toCode bool) {
+	u.verifyFrom = u.verifyStep
+	u.verifyStep = toCode
+	u.verifyAnim.snap(false)
+	u.verifyFading = true
 }
 
 // historyPref is how much chat history linking asks the phone for
@@ -159,7 +233,7 @@ func (u *UI) layoutHistoryChips(gtx C) D {
 
 // layoutLogin is the device-linking screen shown while there is no session.
 func (u *UI) layoutLogin(gtx C) D {
-	if (u.mobile) {
+	if u.mobile || u.phonePairing {
 		return u.layoutMobileLogin(gtx)
 	}
 	p := u.pal
@@ -207,6 +281,16 @@ func (u *UI) layoutLoginCard(gtx C) D {
 					layout.Rigid(u.layoutHistoryChoice),
 					layout.Rigid(layout.Spacer{Height: 20}.Layout),
 				)
+				if u.conn.State == model.StateQR {
+					children = append(children,
+						layout.Rigid(layout.Spacer{Height: 4}.Layout),
+						layout.Rigid(func(gtx C) D {
+							return u.dialogButton(gtx, "login:mobile-pair", dialogButton{
+								label: "Link with phone number",
+							})
+						}),
+					)
+				}
 				if u.conn.State == model.StateError && u.conn.Err != "" {
 					children = append(children, layout.Rigid(
 						u.label(14, u.conn.Err, rgb(0xea0038), labelOpts{maxLines: 3}).Layout))

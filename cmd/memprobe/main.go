@@ -99,7 +99,7 @@ func main() {
 	case *demo:
 		backend = mock.New()
 	case *data != "":
-		b, err := wa.Open(*data, false)
+		b, err := wa.Open(*data, false, false)
 		if err != nil {
 			log.Fatal(err)
 		}

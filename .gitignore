@@ -6,4 +6,5 @@ wazzap.exe
 release-key
 openWa.exe
 *.apk
+tmp/**
 *.apk.idsig

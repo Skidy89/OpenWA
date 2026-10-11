@@ -210,7 +210,6 @@ func (u *UI) layoutConversation(gtx C) D {
 	return d
 }
 
-
 func (u *UI) layoutConvHeader(gtx C, c *model.Chat) D {
 	p := u.pal
 	gtx.Constraints.Min.X = gtx.Constraints.Max.X
@@ -385,7 +384,6 @@ func (u *UI) layoutConvHeader(gtx C, c *model.Chat) D {
 		})
 	})
 }
-
 
 func dp(gtx C, px int) unit.Dp { return unit.Dp(float32(px) / gtx.Metric.PxPerDp) }
 

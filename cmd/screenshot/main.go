@@ -193,7 +193,7 @@ func compareShot(path, crop, win string, rightAligned bool, chat, chatName, cont
 	}
 	var u *ui.UI
 	if data != "" {
-		b, err := wa.Open(data, false)
+		b, err := wa.Open(data, false, false)
 		if err != nil {
 			return err
 		}

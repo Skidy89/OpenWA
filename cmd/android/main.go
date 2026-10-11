@@ -19,7 +19,6 @@ import (
 	"github.com/skidy89/openWA/internal/wa"
 )
 
-
 func main() {
 	debug.SetGCPercent(50)
 
@@ -35,7 +34,7 @@ func main() {
 
 	list := accounts.Load(dataDir)
 
-	backend, err := wa.Open(list.Path(list.Active), false)
+	backend, err := wa.Open(list.Path(list.Active), false, true)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -48,7 +47,7 @@ func main() {
 		NotifyDir: filepath.Join(dataDir, "notifications"),
 		Accounts:  list,
 		Open: func(dir string) (model.Backend, error) {
-			return wa.Open(dir, false)
+			return wa.Open(dir, false, true)
 		},
 	}
 

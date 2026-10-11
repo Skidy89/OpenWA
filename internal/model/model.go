@@ -656,11 +656,12 @@ type Event interface{ isEvent() }
 
 // ConnEvent reports a connection or login state change.
 type ConnEvent struct {
-	State ConnState
-	QR    string // pairing code to render, for StateQR
-	Err   string // for StateError
-	Me    string // own display name, when known
-	MeID  string // own JID, when known
+	State  ConnState
+	QR     string // pairing code to render, for StateQR
+	Err    string // for StateError
+	Me     string // own display name, when known
+	MeID   string // own JID, when known
+	IsCode bool   // 6 digit code, pairing code
 }
 
 // ChatsEvent replaces the whole chat list, e.g. after a history sync chunk.
@@ -1255,6 +1256,8 @@ type Backend interface {
 	// Logout unlinks this device and returns to the QR screen.
 	Logout()
 	Close()
+	// request a pairing code to be sent to the phone, for a new device to link to the same account.
+	RequestPairingCode(phoneNumber string) (string, error)
 }
 
 // SearchKey is the form of a text that message search compares: case

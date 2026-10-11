@@ -127,6 +127,13 @@ func Run(b model.Backend, o Options) error {
 				if h.quitting || !h.background() {
 					return nil
 				}
+				if h.o.Mobile {
+					// Keep the backend alive without an Activity. Android will
+					// attach the next GioView to this pending window when reopened.
+					h.openWindow()
+					h.focused = false
+					h.u.away = true
+				}
 			}
 		case <-h.wake:
 			h.poll(true)
@@ -228,6 +235,9 @@ func (h *host) poke() {
 
 // background reports whether closing the window leaves the app running.
 func (h *host) background() bool {
+	if h.o.Mobile {
+		return true
+	}
 	return h.tray && h.conn.State.LoggedIn() && prefOn(h.b, prefBackground)
 }
 

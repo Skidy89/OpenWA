@@ -72,7 +72,7 @@ func main() {
 	// Each linked account has a data directory of its own (see accounts);
 	// the open one's backend runs.
 	root := *dataDir
-	open := func(dir string) (model.Backend, error) { return wa.Open(dir, *debug) }
+	open := func(dir string) (model.Backend, error) { return wa.Open(dir, *debug, false) }
 	if *demo {
 		root = demoDir
 		open = func(dir string) (model.Backend, error) { return demoAccount(root, dir), nil }

@@ -88,7 +88,9 @@ type Backend struct {
 
 	// serverSkew is how many seconds the server's clock is ahead of ours,
 	// learned from send acks (sendAsyncPrep).
-	serverSkew atomic.Int64
+	serverSkew        atomic.Int64
+	mobile            bool
+	pairCodeRequested bool
 }
 
 func (b *Backend) now() time.Time {
@@ -107,7 +109,7 @@ func (b *Backend) sendTime() time.Time {
 var _ model.Backend = (*Backend)(nil)
 
 // Open opens (or creates) the session database in dataDir.
-func Open(dataDir string, debug bool) (*Backend, error) {
+func Open(dataDir string, debug bool, mobile bool) (*Backend, error) {
 	if err := os.MkdirAll(dataDir, 0o700); err != nil {
 		return nil, err
 	}
@@ -252,6 +254,12 @@ func (b *Backend) pair() {
 		}
 		switch item.Event {
 		case whatsmeow.QRChannelEventCode:
+			if b.pairCodeRequested && b.mobile {
+				continue
+			}
+			if !b.pairCodeRequested && b.mobile {
+				b.emit(model.ConnEvent{State: model.StateQR, IsCode: true})
+			}
 			b.emit(model.ConnEvent{State: model.StateQR, QR: item.Code})
 		case whatsmeow.QRChannelSuccess.Event:
 			b.emit(model.ConnEvent{State: model.StateConnecting})
@@ -267,6 +275,19 @@ func (b *Backend) pair() {
 			b.fail("Linking failed (%s).", item.Event)
 		}
 	}
+}
+
+func (b *Backend) RequestPairingCode(phoneNumber string) (string, error) {
+	ctx := b.ctx
+	if cli := b.client(); cli != nil {
+		code, err := cli.PairPhone(ctx, phoneNumber, true, whatsmeow.PairClientChrome, "Chrome (Linux)")
+		if err != nil {
+			return "", fmt.Errorf("pair phone: %w", err)
+		}
+		return code, nil
+
+	}
+	return "", nil
 }
 
 // startPair stops the previous pair, if any, and connects a new client for

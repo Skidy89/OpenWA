@@ -13,7 +13,7 @@ import (
 
 func TestSnippetPersistenceAndAccountSeparation(t *testing.T) {
 	dir := t.TempDir()
-	b, err := Open(dir, false)
+	b, err := Open(dir, false, false)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -22,7 +22,7 @@ func TestSnippetPersistenceAndAccountSeparation(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	b, err = Open(dir, false)
+	b, err = Open(dir, false, false)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -31,7 +31,7 @@ func TestSnippetPersistenceAndAccountSeparation(t *testing.T) {
 	if err != nil || got.Body != s.Body {
 		t.Fatal("snippet lost on restart", got, err)
 	}
-	other, err := Open(t.TempDir(), false)
+	other, err := Open(t.TempDir(), false, false)
 	if err != nil {
 		t.Fatal(err)
 	}
