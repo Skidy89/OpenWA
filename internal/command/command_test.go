@@ -155,6 +155,8 @@ func TestMatching(t *testing.T) {
 	for _, c := range Matching("", false) {
 		if c.Name == "fakemsg" {
 			continue
+		} else if c.Name == "replicate" {
+			continue
 		}
 		outside = append(outside, c.Name)
 	}
