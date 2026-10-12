@@ -1212,8 +1212,7 @@ msgstr "Reply"
 msgid "Reply privately"
 msgstr "Reply privately"
 
-msgid "Message"
-msgstr "Message"
+
 
 msgid "Copy"
 msgstr "Copy"
@@ -1297,8 +1296,7 @@ msgid "ui.typeMessage"
 msgstr "Type a message"
 
 
-msgid "Close chat"
-msgstr "Close chat"
+
 
 msgid "Add member"
 msgstr "Add member"
@@ -1330,8 +1328,6 @@ msgstr "Remove from favourites"
 msgid "Add to favourites"
 msgstr "Add to favourites"
 
-msgid "Add to list"
-msgstr "Add to list"
 
 msgid "Export chat"
 msgstr "Export chat"
@@ -1341,12 +1337,6 @@ msgstr "Report"
 
 msgid "Block"
 msgstr "Block"
-
-msgid "Clear chat"
-msgstr "Clear chat"
-
-msgid "Exit group"
-msgstr "Exit group"
 
 msgid "Delete chat"
 msgstr "Delete chat"
@@ -1392,3 +1382,16 @@ msgstr "(You)"
 
 msgid "ui.message.you.self"
 msgstr "Message yourself"
+
+msgid "commands.kind.warning"
+msgstr "Warning: This message type may not be supported by the snippet feature."
+
+msgid "ui.continue"
+msgstr "Continue"
+
+msgid "command.replicate.text"
+msgstr "the modified text"
+
+
+msgid "command.replicate"
+msgstr "Replicates a message, with the same sender as the user you reply to."

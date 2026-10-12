@@ -114,7 +114,7 @@ func (u *UI) grayToggle(key, title, sub string, flag *bool, changed func()) sett
 			toggle()
 			return
 		}
-		if key == grayCmdPref("replicateMsg") {
+		if key == grayCmdPref("replicate") {
 			// banable feature, so show a warning in the dialog.
 			u.confirm(
 				u.locale.Text("EnableFeature"),

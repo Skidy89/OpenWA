@@ -434,6 +434,18 @@ func (b *Backend) Edit(m *model.Message, d model.Draft) {
 	}
 }
 
+// ReplicateMessage implements model.Backend for the demo backend.
+func (b *Backend) ReplicateMessage(chatID string, d model.Draft, reply *model.Message) error {
+	if reply == nil || reply.ChatID != chatID {
+		return fmt.Errorf("reply to a message in this chat first")
+	}
+	d.Reply = reply
+	if b.Send(chatID, d) == nil {
+		return fmt.Errorf("couldn't replicate the message")
+	}
+	return nil
+}
+
 func (b *Backend) Versions(m *model.Message) []model.Version {
 	return b.versions[m.ChatID+"/"+m.ID]
 }

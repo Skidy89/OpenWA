@@ -80,8 +80,8 @@ func runCatch(c *Context) error {
 	if c.Reply.Kind == model.KindUnsupported {
 		// just send the user a warning that catching the message may not work
 		note := c.note()
-		note.Text = "Warning: This message type may not be supported by the snippet feature."
-		note.Buttons = []Button{{Label: "Continue", Run: func() { c.Do(func() func() { return func() { c.ShowPayload(c.Reply.ChatID, c.Reply.ID) } }) }}}
+		note.Text = c.Locale.Text("commands.kind.warning")
+		note.Buttons = []Button{{Label: c.Locale.Text("ui.continue"), Run: func() { c.Do(func() func() { return func() { c.ShowPayload(c.Reply.ChatID, c.Reply.ID) } }) }}}
 		return nil
 	}
 	c.ShowPayload(c.Reply.ChatID, c.Reply.ID)

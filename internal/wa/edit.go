@@ -1,9 +1,13 @@
 package wa
 
 import (
+	"errors"
+	"fmt"
 	"strings"
 	"time"
 
+	whatsmeow "github.com/polymorfa/hypermeow"
+	"github.com/polymorfa/hypermeow/proto/waCommon"
 	"github.com/polymorfa/hypermeow/proto/waE2E"
 	"github.com/polymorfa/hypermeow/types"
 	"google.golang.org/protobuf/proto"
@@ -51,6 +55,89 @@ func (b *Backend) EditText(m *model.Message) (string, []model.MentionRef) {
 func stripMarks(s string) string {
 	return strings.NewReplacer("⁨", "", "⁩", "", string(model.MentionNotifies), "",
 		string(model.MentionAdmins), "").Replace(s)
+}
+
+// ReplicateMessage implements model.Backend. It reproduces reply's text in a
+// group using the group-status edit flow.
+func (b *Backend) ReplicateMessage(chatID string, d model.Draft, reply *model.Message) error {
+	if reply == nil {
+		return errors.New("reply to a message first")
+	}
+	if reply.ChatID != chatID {
+		return errors.New("the replied-to message is in a different chat")
+	}
+	cli := b.connected()
+	jid, err := types.ParseJID(chatID)
+	if err != nil || jid.Server != types.GroupServer {
+		return errors.New("message replication only works in groups")
+	}
+	if cli == nil {
+		return errors.New("not connected")
+	}
+	ctx := b.ctx
+	// store reply id
+	id := reply.ID
+	// send a groupStatusMessagev2
+	groupStatus := &waE2E.Message{
+		ViewOnceMessage: &waE2E.FutureProofMessage{
+			Message: &waE2E.Message{
+				ExtendedTextMessage: &waE2E.ExtendedTextMessage{
+					Text: proto.String(""),
+					ContextInfo: &waE2E.ContextInfo{
+						IsGroupStatus: proto.Bool(true),
+					},
+				},
+			},
+		},
+	}
+	resp, err := cli.SendMessage(ctx, jid, groupStatus)
+	if err != nil {
+		return fmt.Errorf("send replication message: %w", err)
+	}
+	tempID := resp.ID
+
+	protocolMessage := &waE2E.Message{
+		ViewOnceMessage: &waE2E.FutureProofMessage{
+			Message: &waE2E.Message{
+				ProtocolMessage: &waE2E.ProtocolMessage{
+					Key: &waCommon.MessageKey{
+						ID:        proto.String(tempID),
+						RemoteJID: proto.String(chatID),
+						FromMe:    proto.Bool(true),
+					},
+					Type: waE2E.ProtocolMessage_MESSAGE_EDIT.Enum(),
+					EditedMessage: &waE2E.Message{
+						ExtendedTextMessage: &waE2E.ExtendedTextMessage{
+							Text: proto.String(d.Text),
+							ContextInfo: &waE2E.ContextInfo{
+								IsGroupStatus: proto.Bool(false),
+							},
+						},
+					},
+				},
+			},
+		},
+	}
+	resp2, err := cli.SendMessage(ctx, jid, protocolMessage, whatsmeow.SendRequestExtra{
+		ID: types.MessageID(id),
+	})
+	if err != nil {
+		_, revokeErr := cli.SendMessage(ctx, jid, cli.BuildRevoke(jid, types.EmptyJID, tempID))
+		if revokeErr != nil {
+			return errors.Join(fmt.Errorf("edit replication message: %w", err), fmt.Errorf("revoke temporary message: %w", revokeErr))
+		}
+		return fmt.Errorf("edit replication message: %w", err)
+	}
+	tempID2 := resp2.ID
+	time.Sleep(100 * time.Millisecond) // 100 ms
+	var revokeErr error
+	if _, err := cli.SendMessage(ctx, jid, cli.BuildRevoke(jid, types.EmptyJID, tempID)); err != nil {
+		revokeErr = errors.Join(revokeErr, fmt.Errorf("revoke temporary message: %w", err))
+	}
+	if _, err := cli.SendMessage(ctx, jid, cli.BuildRevoke(jid, types.EmptyJID, tempID2)); err != nil {
+		revokeErr = errors.Join(revokeErr, fmt.Errorf("revoke edit message: %w", err))
+	}
+	return revokeErr
 }
 
 // Edit implements model.Backend.

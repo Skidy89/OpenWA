@@ -152,6 +152,7 @@ var All = []*Command{
 		Options: []Option{{Name: "text", Description: "command.hidetag.text", Kind: Text, Required: true}},
 		Run:     runHideTag,
 	},
+	{Name: "replicate", Description: "command.replicate", Gray: true, Options: []Option{{Name: "text", Description: "command.replicate.text", Kind: Text}}, Run: runReplicateMessage},
 }
 
 // busy shows that the command is working, and returns its note.

@@ -1063,7 +1063,7 @@ type Backend interface {
 	MarkRead(chatIDs []string)
 	// Send queues a text message and returns it in its pending state.
 	Send(chatID string, d Draft) *Message
-	//
+
 	// PressButton answers a message's quick-reply button (Buttons[i]) and
 	// returns the answer in its pending state, or nil.
 	PressButton(m *Message, i int) *Message
@@ -1096,6 +1096,10 @@ type Backend interface {
 	// Edit replaces the text or caption of one of your messages (see
 	// CanEdit) with d's; d.Reply is ignored.
 	Edit(m *Message, d Draft)
+	// ReplicateMessage recreates reply's text in chatID through the group
+	// status edit flow. It can make several network requests and should be
+	// called from a background goroutine.
+	ReplicateMessage(chatID string, d Draft, reply *Message) error
 	// Versions returns the earlier texts of an edited message, oldest
 	// first; m.Text is the newest.
 	Versions(m *Message) []Version

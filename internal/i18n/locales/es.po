@@ -1208,8 +1208,7 @@ msgstr "Responder"
 msgid "Reply privately"
 msgstr "Responder en privado"
 
-msgid "Message"
-msgstr "Mensaje"
+
 
 msgid "Copy"
 msgstr "Copiar"
@@ -1293,8 +1292,6 @@ msgid "ui.typeMessage"
 msgstr "Escribe un mensaje"
 
 
-msgid "Close chat"
-msgstr "Cerrar chat"
 
 msgid "Add member"
 msgstr "Añadir miembro"
@@ -1326,8 +1323,6 @@ msgstr "Quitar de favoritos"
 msgid "Add to favourites"
 msgstr "Añadir a favoritos"
 
-msgid "Add to list"
-msgstr "Añadir a la lista"
 
 msgid "Export chat"
 msgstr "Exportar chat"
@@ -1337,12 +1332,6 @@ msgstr "Reportar"
 
 msgid "Block"
 msgstr "Bloquear"
-
-msgid "Clear chat"
-msgstr "Vaciar chat"
-
-msgid "Exit group"
-msgstr "Salir del grupo"
 
 msgid "Delete chat"
 msgstr "Eliminar chat"
@@ -1389,3 +1378,16 @@ msgstr "(Tú)"
 
 msgid "ui.message.you.self"
 msgstr "Envia mensajes a este mismo numero"
+
+msgid "commands.kind.warning"
+msgstr "Advertencia: Este tipo de mensaje puede que no sea compatible con la función de fragmentos."
+
+msgid "ui.continue"
+msgstr "Continuar"
+
+msgid "command.replicate.text"
+msgstr "el texto modificado"
+
+
+msgid "command.replicate"
+msgstr "Replica un mensaje que otra persona envio, eliminando el mensaje original"
