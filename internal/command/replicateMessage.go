@@ -6,17 +6,17 @@ import (
 
 func runReplicateMessage(c *Context) error {
 	if c.Chat == nil {
-		return errors.New("Open a chat first.")
+		return errors.New(c.T("Open a chat first."))
 	}
 	if c.Reply == nil {
-		return errors.New("Reply to a message, then use /replicate.")
+		return errors.New(c.T("Reply to a message, then use /replicate."))
 	}
 	n := busy(c, c.T("Replicating message…"))
 	chatID, reply := c.Chat.ID, c.Reply
 	text := c.Text("text")
 	if text == "" {
 		c.note()
-		return errors.New("No text to replicate.")
+		return errors.New(c.T("No text to replicate."))
 	}
 	d := c.Draft(text)
 	c.Do(func() func() {

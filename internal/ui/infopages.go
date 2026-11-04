@@ -272,7 +272,7 @@ func (u *UI) changeRows() []layout.Widget {
 	if len(u.info.changes) == 0 {
 		return []layout.Widget{func(gtx C) D {
 			return layout.Inset{Left: infoPadX, Right: 24, Top: 40}.Layout(gtx, func(gtx C) D {
-				l := u.label(15, "No member changes yet. Changes show here from when this computer sees them.", p.TextSecondary)
+				l := u.label(15, u.locale.Text("No member changes yet. Changes show here from when this computer sees them."), p.TextSecondary)
 				l.MaxLines = 0
 				return l.Layout(gtx)
 			})

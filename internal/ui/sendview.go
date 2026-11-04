@@ -790,9 +790,9 @@ func (u *UI) layoutDropHint(gtx C) {
 				return centerIn(gtx, s, iconW(icAttach, 44, faded(p.Green, v)))
 			}),
 			layout.Rigid(layout.Spacer{Height: 18}.Layout),
-			layout.Rigid(u.label(20, "Drop files here", faded(p.Text, v), labelOpts{weight: font.Medium}).Layout),
+			layout.Rigid(u.label(20, u.locale.Text("Drop files here"), faded(p.Text, v), labelOpts{weight: font.Medium}).Layout),
 			layout.Rigid(layout.Spacer{Height: 6}.Layout),
-			layout.Rigid(u.label(14, "Photos and videos go as media, anything else as a document", faded(p.TextSecondary, v)).Layout),
+			layout.Rigid(u.label(14, u.locale.Text("Photos and videos go as media, anything else as a document"), faded(p.TextSecondary, v)).Layout),
 		)
 	})
 	msg.at(gtx, (sz.X-msg.size.X)/2, (sz.Y-msg.size.Y)/2)

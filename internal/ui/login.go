@@ -55,10 +55,10 @@ func (u *UI) updateLogin(gtx C) {
 				} else {
 					PhoneNumber = country + number
 				}
-				u.toast("Sending verification code... to +" + PhoneNumber)
+				u.toast(u.locale.Textf("Sending verification code... to +%s", PhoneNumber))
 				code, err := u.backend.RequestPairingCode(PhoneNumber)
 				if err != nil {
-					u.toast("Error sending verification code: " + err.Error())
+					u.toast(u.locale.Textf("Error sending verification code: %s", err.Error()))
 					return
 				}
 				u.verifyCode.SetText(code)
@@ -76,20 +76,20 @@ func (u *UI) updateLogin(gtx C) {
 				if u.mobile {
 					u.setHistory(u.recentHistory())
 				}
-				u.toast("Sending verification code... to +" + PhoneNumber)
+				u.toast(u.locale.Textf("Sending verification code... to +%s", PhoneNumber))
 				code, err := u.backend.RequestPairingCode(PhoneNumber)
 				if err != nil {
-					u.toast("Error sending verification code: " + err.Error())
+					u.toast(u.locale.Textf("Error sending verification code: %s", err.Error()))
 					return
 				}
 				u.beginMobileLoginTransition(true)
 				u.verifyCode.SetText(code)
 				if u.conn.State == model.StateError && u.conn.Err != "" {
-					u.toast("Error: " + u.conn.Err)
+					u.toast(u.locale.Textf("Error: %s", u.conn.Err))
 				}
 				switch u.conn.State {
 				case model.StateQR, model.StateStarting:
-					u.toast("Verification code sent to +" + PhoneNumber)
+					u.toast(u.locale.Textf("Verification code sent to +%s", PhoneNumber))
 				case model.StateQRExpired, model.StateError:
 					u.toast("Verification code expired or error occurred. Please try again.")
 				default:
@@ -168,7 +168,7 @@ func (u *UI) layoutHistoryChoice(gtx C) D {
 	p := u.pal
 	full := u.historyPref() == model.HistoryFull
 	return layout.Flex{Axis: layout.Vertical}.Layout(gtx,
-		layout.Rigid(u.label(14, "Chat history to copy from your phone", p.TextSecondary, labelOpts{maxLines: 1}).Layout),
+		layout.Rigid(u.label(14, u.locale.Text("Chat history to copy from your phone"), p.TextSecondary, labelOpts{maxLines: 1}).Layout),
 		layout.Rigid(layout.Spacer{Height: 10}.Layout),
 		layout.Rigid(func(gtx C) D {
 			return u.historyOption(gtx, "login:recent", !full, "Recent messages", "")
@@ -266,7 +266,7 @@ func (u *UI) layoutLoginCard(gtx C) D {
 		return layout.Flex{Alignment: layout.Middle}.Layout(gtx,
 			layout.Flexed(1, func(gtx C) D {
 				children := []layout.FlexChild{
-					layout.Rigid(u.label(28, "Log in to OpenWa-Cli", p.Text, labelOpts{weight: font.Light, maxLines: 1}).Layout),
+					layout.Rigid(u.label(28, u.locale.Text("Log in to OpenWa-Cli"), p.Text, labelOpts{weight: font.Light, maxLines: 1}).Layout),
 					layout.Rigid(layout.Spacer{Height: 32}.Layout),
 				}
 				for i, s := range loginSteps {
@@ -353,7 +353,7 @@ func (u *UI) layoutQR(gtx C) D {
 						return D{Size: image.Pt(b, b)}
 					}),
 					layout.Rigid(layout.Spacer{Height: 10}.Layout),
-					layout.Rigid(u.label(13, "Click to reload QR code", rgb(0x3b4a54), labelOpts{maxLines: 1}).Layout),
+					layout.Rigid(u.label(13, u.locale.Text("Click to reload QR code"), rgb(0x3b4a54), labelOpts{maxLines: 1}).Layout),
 				)
 			})
 		})

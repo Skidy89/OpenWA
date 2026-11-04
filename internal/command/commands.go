@@ -560,7 +560,7 @@ func runCalc(c *Context) error {
 	sum := strings.TrimSpace(c.Text("sum"))
 	v, err := Calc(sum, lastAnswer)
 	if err != nil {
-		return errors.New(c.T("Couldn't work that out: ") + err.Error() + ".")
+		return errors.New(c.T("Couldn't work that out: ") + c.T(err.Error()) + ".")
 	}
 	if m := c.Backend.Send(c.Chat.ID, model.Draft{Text: sum + " = " + FormatNumber(v), Reply: c.Reply}); m != nil {
 		lastAnswer = v

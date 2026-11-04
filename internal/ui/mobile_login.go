@@ -104,7 +104,7 @@ func (u *UI) layoutMobilePhoneForm(gtx C) D {
 		layout.Rigid(func(gtx C) D {
 			return u.label(
 				24,
-				"Link your WhatsApp",
+				u.locale.Text("Link your WhatsApp"),
 				p.Text,
 				labelOpts{
 					weight:   font.Medium,
@@ -116,7 +116,7 @@ func (u *UI) layoutMobilePhoneForm(gtx C) D {
 		layout.Rigid(func(gtx C) D {
 			return u.label(
 				14,
-				"Enter the phone number connected to your WhatsApp account. We'll use it to prepare this device for linking.",
+				u.locale.Text("Enter the phone number connected to your WhatsApp account. We'll use it to prepare this device for linking."),
 				p.TextSecondary,
 				labelOpts{maxLines: 4},
 			).Layout(gtx)
@@ -131,7 +131,7 @@ func (u *UI) layoutMobilePhoneForm(gtx C) D {
 				}),
 				layout.Rigid(layout.Spacer{Width: 12}.Layout),
 				layout.Flexed(1, func(gtx C) D {
-					return u.label(12, "Phone number", p.TextSecondary, labelOpts{maxLines: 1}).Layout(gtx)
+					return u.label(12, u.locale.Text("Phone number"), p.TextSecondary, labelOpts{maxLines: 1}).Layout(gtx)
 				}),
 			)
 		}),
@@ -158,7 +158,7 @@ func (u *UI) layoutMobilePhoneForm(gtx C) D {
 		layout.Rigid(func(gtx C) D {
 			return u.label(
 				13,
-				"After you continue, follow the instructions in WhatsApp on your primary phone.",
+				u.locale.Text("After you continue, follow the instructions in WhatsApp on your primary phone."),
 				p.TextSecondary,
 				labelOpts{maxLines: 3},
 			).Layout(gtx)
@@ -206,20 +206,20 @@ func (u *UI) layoutMobileVerifyForm(gtx C) D {
 		}),
 		layout.Rigid(layout.Spacer{Height: 18}.Layout),
 		layout.Rigid(func(gtx C) D {
-			return u.label(24, "Your 8-digit code", p.Text,
+			return u.label(24, u.locale.Text("Your 8-digit code"), p.Text,
 				labelOpts{weight: font.Medium, maxLines: 1}).Layout(gtx)
 		}),
 		layout.Rigid(layout.Spacer{Height: 10}.Layout),
 		layout.Rigid(func(gtx C) D {
 			phone := "+" + u.countryCode.Text() + " " + u.phoneNumber.Text()
-			return u.label(14, "Enter this code in WhatsApp on your phone: "+phone, p.TextSecondary,
+			return u.label(14, u.locale.Text("Enter this code in WhatsApp on your phone: ")+phone, p.TextSecondary,
 				labelOpts{maxLines: 2}).Layout(gtx)
 		}),
 		layout.Rigid(layout.Spacer{Height: 28}.Layout),
 		layout.Rigid(u.layoutMobileCodeBoxes),
 		layout.Rigid(layout.Spacer{Height: 12}.Layout),
 		layout.Rigid(func(gtx C) D {
-			return u.label(13, "The code contains eight numbers.", p.TextSecondary,
+			return u.label(13, u.locale.Text("The code contains eight numbers."), p.TextSecondary,
 				labelOpts{maxLines: 1}).Layout(gtx)
 		}),
 		layout.Rigid(layout.Spacer{Height: 24}.Layout),

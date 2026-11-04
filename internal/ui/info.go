@@ -267,7 +267,7 @@ func (u *UI) infoRows(gtx C, c *model.Chat, info *model.ChatInfo) []layout.Widge
 		members = filterMembers(members, u.info.memberQuery.Text())
 		if len(members) == 0 {
 			rows = append(rows, func(gtx C) D {
-				return layout.Inset{Left: infoPadX, Top: 14, Bottom: 14}.Layout(gtx, u.label(15, "No members found", p.TextSecondary).Layout)
+				return layout.Inset{Left: infoPadX, Top: 14, Bottom: 14}.Layout(gtx, u.label(15, u.locale.Text("No members found"), p.TextSecondary).Layout)
 			})
 		}
 	} else if !u.info.allMembers && len(members) > infoMembersShown {
@@ -404,12 +404,12 @@ func (u *UI) infoProfile(gtx C, c *model.Chat, info *model.ChatInfo) D {
 		}
 		sub = func(gtx C) D {
 			return layout.Flex{Alignment: layout.Baseline}.Layout(gtx,
-				layout.Rigid(u.label(16.8, "Group · ", p.TextSecondary).Layout),
+				layout.Rigid(u.label(16.8, u.locale.Text("Group · "), p.TextSecondary).Layout),
 				layout.Rigid(u.label(16.8, members, p.Green, labelOpts{weight: font.SemiBold}).Layout),
 			)
 		}
 		if n == 0 {
-			sub = u.label(16.8, "Group", p.TextSecondary).Layout
+			sub = u.label(16.8, u.locale.Text("Group"), p.TextSecondary).Layout
 		}
 	} else {
 		sub = u.contactSubtitle(c, info)

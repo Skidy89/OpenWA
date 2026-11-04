@@ -307,9 +307,9 @@ func (u *UI) renderDone(j *renderJob) {
 		}
 	case sinkSave:
 		if j.err != nil {
-			u.toast("Couldn't save the photo: " + j.err.Error())
+			u.toast(u.locale.Textf("Couldn't save the photo: %s", j.err.Error()))
 		} else {
-			u.toast("Saved to " + j.result)
+			u.toast(u.locale.Textf("Saved to %s", j.result))
 		}
 	}
 }

@@ -202,7 +202,7 @@ func (u *UI) updateAttach() {
 		case r.err == filepick.ErrUnsupported:
 			u.toast("No file dialog found. Install zenity or kdialog to attach files.")
 		case r.err != nil:
-			u.toast("Couldn't open the file dialog: " + r.err.Error())
+			u.toast(u.locale.Textf("Couldn't open the file dialog: %s", r.err.Error()))
 		default:
 			files := make([]*attachFile, len(r.files))
 			for i, f := range r.files {
@@ -372,7 +372,7 @@ func (u *UI) addFiles(chatID string, files []*attachFile) {
 		return
 	}
 	if len(a.files)+len(files) > maxAttach {
-		u.toast("You can send up to " + itoa(maxAttach) + " files at once.")
+		u.toast(u.locale.Textf("You can send up to %d files at once.", maxAttach))
 		removeTemps(files[max(0, maxAttach-len(a.files)):])
 		files = files[:max(0, maxAttach-len(a.files))]
 		if len(files) == 0 {
@@ -806,7 +806,7 @@ func (u *UI) pollPanel(gtx C) D {
 					return layout.Flex{Alignment: layout.Middle}.Layout(gtx,
 						layout.Rigid(func(gtx C) D { return u.iconButton(gtx, u.btn("poll:close"), icClose, 40, 24, p.IconStrong) }),
 						layout.Rigid(layout.Spacer{Width: 12}.Layout),
-						layout.Flexed(1, u.label(18, "Create poll", p.Text, labelOpts{weight: font.Medium, maxLines: 1}).Layout),
+						layout.Flexed(1, u.label(18, u.locale.Text("Create poll"), p.Text, labelOpts{weight: font.Medium, maxLines: 1}).Layout),
 					)
 				})
 			})

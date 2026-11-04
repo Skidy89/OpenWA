@@ -317,7 +317,7 @@ func (u *UI) phoneEvent(e model.PhoneEvent) {
 	case e.Err != "":
 		u.toast(e.Err)
 	case e.ID == "":
-		u.toast("+" + e.Phone + " isn't on WhatsApp. Check that the number has its country code.")
+		u.toast(u.locale.Textf("+%s isn't on WhatsApp. Check that the number has its country code.", e.Phone))
 	default:
 		name := e.Name
 		if name == "" {
@@ -899,7 +899,7 @@ func (u *UI) groupPhotoButton(gtx C) D {
 				layout.Rigid(iconW(icAddPhoto, 32, p.UserAvatarIcon)),
 				layout.Rigid(layout.Spacer{Height: 8}.Layout),
 				layout.Rigid(func(gtx C) D {
-					l := u.label(12.5, "ADD GROUP ICON", p.UserAvatarIcon, labelOpts{weight: font.Medium, align: text.Middle})
+					l := u.label(12.5, u.locale.Text("ADD GROUP ICON"), p.UserAvatarIcon, labelOpts{weight: font.Medium, align: text.Middle})
 					l.MaxLines = 2
 					return l.Layout(gtx)
 				}),

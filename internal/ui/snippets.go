@@ -426,7 +426,7 @@ func (u *UI) snippetPanel(gtx C) D {
 		return layout.Flex{Axis: layout.Vertical}.Layout(gtx,
 			layout.Rigid(func(gtx C) D {
 				return layout.Flex{Alignment: layout.Middle}.Layout(gtx,
-					layout.Flexed(1, u.label(19, "Message payload", u.pal.Text, labelOpts{weight: font.SemiBold, maxLines: 1}).Layout),
+					layout.Flexed(1, u.label(19, u.locale.Text("Message payload"), u.pal.Text, labelOpts{weight: font.SemiBold, maxLines: 1}).Layout),
 					layout.Rigid(func(gtx C) D { return u.iconButton(gtx, u.btn("snip:close"), icClose, 36, 22, u.pal.Icon) }))
 			}),
 			layout.Rigid(layout.Spacer{Height: 12}.Layout),

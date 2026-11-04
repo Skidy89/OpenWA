@@ -812,7 +812,7 @@ func (u *UI) encryptionNotice(gtx C, maxW int) D {
 	gtx.Constraints.Min.X = 0
 	return u.card(gtx, 8, p.Encryption, func(gtx C) D {
 		return layout.Inset{Left: 12, Right: 12, Top: 6, Bottom: 7}.Layout(gtx, func(gtx C) D {
-			l := u.label(12.5, "🔒 Messages and calls are end-to-end encrypted. Only people in this chat can read, listen to, or share them.",
+			l := u.label(12.5, u.locale.Text("🔒 Messages and calls are end-to-end encrypted. Only people in this chat can read, listen to, or share them."),
 				p.EncryptionText, labelOpts{align: text.Middle})
 			l.MaxLines = 0
 			return l.Layout(gtx)
@@ -881,12 +881,12 @@ func (u *UI) layoutMeta(gtx C, m *model.Message, col color.NRGBA, tickCol *color
 		children = append(children,
 			layout.Rigid(iconW(icBlock, 14, u.pal.Danger)),
 			layout.Rigid(layout.Spacer{Width: 2}.Layout),
-			layout.Rigid(u.label(12.5, "Deleted", u.pal.Danger).Layout),
+			layout.Rigid(u.label(12.5, u.locale.Text("Deleted"), u.pal.Danger).Layout),
 			layout.Rigid(layout.Spacer{Width: 4}.Layout))
 	}
 	if !m.Edited.IsZero() && m.Kind != model.KindDeleted {
 		children = append(children,
-			layout.Rigid(u.label(12.5, "Edited", col).Layout),
+			layout.Rigid(u.label(12.5, u.locale.Text("Edited"), col).Layout),
 			layout.Rigid(layout.Spacer{Width: 4}.Layout))
 	}
 	children = append(children, layout.Rigid(u.label(12.5, m.Time.Format("15:04"), col).Layout))
@@ -1218,7 +1218,7 @@ func (u *UI) layoutBubble(gtx C, c *model.Chat, m *model.Message, tail bool, max
 			return layout.Flex{Alignment: layout.Middle}.Layout(gtx,
 				layout.Rigid(iconW(icForward, 16, secondary)),
 				layout.Rigid(layout.Spacer{Width: 4}.Layout),
-				layout.Rigid(u.label(13, "Forwarded", secondary, labelOpts{italic: true, maxLines: 1}).Layout),
+				layout.Rigid(u.label(13, u.locale.Text("Forwarded"), secondary, labelOpts{italic: true, maxLines: 1}).Layout),
 			)
 		})
 		contentW = max(contentW, fwd.size.X+2*textInset)

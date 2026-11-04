@@ -100,7 +100,7 @@ func (u *UI) layoutEditPreview(gtx C, m *model.Message) D {
 							return layout.Flex{Alignment: layout.Middle}.Layout(gtx,
 								layout.Rigid(iconW(icEdit, 16, p.Green)),
 								layout.Rigid(layout.Spacer{Width: 6}.Layout),
-								layout.Rigid(u.label(13.5, "Edit message", p.Green, labelOpts{weight: font.Medium}).Layout),
+								layout.Rigid(u.label(13.5, u.locale.Text("Edit message"), p.Green, labelOpts{weight: font.Medium}).Layout),
 							)
 						})
 					}),
@@ -151,10 +151,10 @@ func (u *UI) editsPanel(gtx C) D {
 	gtx.Constraints = layout.Constraints{Min: image.Pt(w, 0), Max: image.Pt(w, gtx.Constraints.Max.Y*4/5)}
 	return layout.UniformInset(24).Layout(gtx, func(gtx C) D {
 		return layout.Flex{Axis: layout.Vertical}.Layout(gtx,
-			layout.Rigid(u.label(19.5, "Edit history", p.Text, labelOpts{weight: font.Medium}).Layout),
+			layout.Rigid(u.label(19.5, u.locale.Text("Edit history"), p.Text, labelOpts{weight: font.Medium}).Layout),
 			layout.Rigid(layout.Spacer{Height: 6}.Layout),
 			layout.Rigid(func(gtx C) D {
-				l := u.label(14.5, "What this message said before each edit, as this computer received it.", p.TextSecondary)
+				l := u.label(14.5, u.locale.Text("What this message said before each edit, as this computer received it."), p.TextSecondary)
 				l.MaxLines = 0
 				return l.Layout(gtx)
 			}),

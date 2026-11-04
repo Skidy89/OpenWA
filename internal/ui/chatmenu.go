@@ -249,9 +249,9 @@ func (u *UI) themePanel(gtx C) D {
 	gtx.Constraints = layout.Constraints{Min: image.Pt(w, 0), Max: image.Pt(w, gtx.Constraints.Max.Y)}
 	return layout.UniformInset(24).Layout(gtx, func(gtx C) D {
 		return layout.Flex{Axis: layout.Vertical}.Layout(gtx,
-			layout.Rigid(u.label(19.5, "Chat theme", p.Text, labelOpts{weight: font.Medium}).Layout),
+			layout.Rigid(u.label(19.5, u.locale.Text("Chat theme"), p.Text, labelOpts{weight: font.Medium}).Layout),
 			layout.Rigid(layout.Spacer{Height: 6}.Layout),
-			layout.Rigid(u.label(14.5, "Only you see the theme you choose.", p.TextSecondary).Layout),
+			layout.Rigid(u.label(14.5, u.locale.Text("Only you see the theme you choose."), p.TextSecondary).Layout),
 			layout.Rigid(layout.Spacer{Height: 18}.Layout),
 			layout.Rigid(func(gtx C) D {
 				cols := 3
@@ -413,9 +413,9 @@ func (u *UI) addMembers(chat string, ids []string) {
 		case len(failed) == 0 && added == 1:
 			u.toast("Added 1 member")
 		case len(failed) == 0:
-			u.toast("Added " + itoa(added) + " members")
+			u.toast(u.locale.Textf("Added %d members", added))
 		default:
-			u.toast("Couldn't add " + strings.Join(failed, ", ") + ". Invite them with the group link instead.")
+			u.toast(u.locale.Textf("Couldn't add %s. Invite them with the group link instead.", strings.Join(failed, ", ")))
 		}
 	})
 }

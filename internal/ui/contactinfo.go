@@ -173,7 +173,7 @@ func (u *UI) businessNotice(gtx C) D {
 	p := u.pal
 	return layout.Inset{Left: infoTextX, Right: 38, Top: 18, Bottom: 44}.Layout(gtx, func(gtx C) D {
 		return layout.Flex{Alignment: layout.Middle}.Layout(gtx,
-			layout.Flexed(1, u.label(15, "This is a business account.", p.Text, labelOpts{maxLines: 2}).Layout),
+			layout.Flexed(1, u.label(15, u.locale.Text("This is a business account."), p.Text, labelOpts{maxLines: 2}).Layout),
 			layout.Rigid(func(gtx C) D { return infoIcon(gtx, p.Green) }),
 		)
 	})

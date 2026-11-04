@@ -232,6 +232,7 @@ func (b *Backend) SendFile(chatID string, a model.Attachment, d model.Draft) *mo
 	if err != nil || cli == nil {
 		return nil
 	}
+	d = b.preparePrivateDraft(d)
 	st, err := os.Stat(a.Path)
 	if err != nil || st.IsDir() {
 		b.emit(model.NoticeEvent{Text: "Couldn't read " + filepath.Base(a.Path) + "."})

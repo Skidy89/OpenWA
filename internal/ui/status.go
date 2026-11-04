@@ -629,7 +629,7 @@ func (u *UI) layoutStatusViewer(gtx C) {
 						layout.Rigid(layout.Spacer{Width: 8}.Layout),
 						layout.Rigid(iconW(icBlock, 14, u.pal.Danger)),
 						layout.Rigid(layout.Spacer{Width: 2}.Layout),
-						layout.Rigid(u.label(13.5, "Deleted", u.pal.Danger).Layout),
+						layout.Rigid(u.label(13.5, u.locale.Text("Deleted"), u.pal.Danger).Layout),
 					)
 				}),
 			)

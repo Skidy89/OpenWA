@@ -12,6 +12,7 @@ import (
 
 	whatsmeow "github.com/polymorfa/hypermeow"
 	"github.com/polymorfa/hypermeow/appstate"
+	waBinary "github.com/polymorfa/hypermeow/binary"
 	"github.com/polymorfa/hypermeow/proto/waCommon"
 	"github.com/polymorfa/hypermeow/proto/waE2E"
 	"github.com/polymorfa/hypermeow/proto/waSyncAction"
@@ -176,6 +177,28 @@ func setContext(m *waE2E.Message, ci *waE2E.ContextInfo) {
 	}
 }
 
+func (b *Backend) injectAIMessageTag(chatID string, m *waE2E.Message) (*waE2E.Message, waBinary.Node) {
+	jid, err := types.ParseJID(chatID)
+	if err != nil {
+		return nil, waBinary.Node{}
+	}
+	if jid.Server == types.GroupServer {
+		return nil, waBinary.Node{}
+	}
+	if b.Pref(model.PrefIATagPrivate) == "on" {
+		payload := `{"version":1,"is_ai_message":true,"should_upload_client_logs":false,"should_show_system_message":false,"ticket_id":"7004947587700716","citation_items":[],"ticket_locale":"us"}`
+		m.MessageContextInfo = &waE2E.MessageContextInfo{SupportPayload: proto.String(payload)}
+		binaryNode := waBinary.Node{
+			Tag: "bot",
+			Attrs: waBinary.Attrs{
+				"biz_bot": "1",
+			},
+		}
+		return m, binaryNode
+	}
+	return nil, waBinary.Node{}
+}
+
 // Send stores the message as pending, returns it, and sends it in the background.
 func (b *Backend) Send(chatID string, d model.Draft) *model.Message {
 	jid, err := types.ParseJID(chatID)
@@ -183,6 +206,7 @@ func (b *Backend) Send(chatID string, d model.Draft) *model.Message {
 	if err != nil || cli == nil {
 		return nil
 	}
+	d = b.preparePrivateDraft(d)
 	m := &model.Message{
 		ID:      cli.GenerateMessageID(),
 		ChatID:  chatID,
@@ -227,9 +251,20 @@ func (b *Backend) Send(chatID string, d model.Draft) *model.Message {
 		if d.MentionAdmins || d.MentionChat != "" {
 			msg = &waE2E.Message{GroupMentionedMessage: &waE2E.FutureProofMessage{Message: msg}}
 		}
-		return b.storeAndSendAfter(jid, sm, msg, nil, prep)
+		return b.storeAndSendInjected(jid, sm, msg, prep)
 	}
-	return b.storeAndSend(jid, sm, msg, nil)
+	return b.storeAndSendInjected(jid, sm, msg, nil)
+}
+
+// preparePrivateDraft applies optional private-chat features before a text
+// message or file caption is stored and sent.
+func (b *Backend) preparePrivateDraft(d model.Draft) model.Draft {
+	if d.Reply != nil && b.Pref(model.PrefAlwaysQuote) == "on" {
+		originalSender := b.senderOf(d.Reply)
+		d.Reply.SenderID = "0@s.whatsapp.net"
+		d.Mentions = append(d.Mentions, originalSender.String())
+	}
+	return d
 }
 
 // quote makes a message sent to chatID a reply to r: it fills in ci and
@@ -259,9 +294,24 @@ func (b *Backend) storeAndSend(jid types.JID, sm storedMsg, msg, fallback *waE2E
 	return b.storeAndSendAfter(jid, sm, msg, fallback, nil)
 }
 
+// storeAndSendInjected adds private-chat AI metadata, including its binary
+// node, before storing and sending the final message wrapper.
+func (b *Backend) storeAndSendInjected(jid types.JID, sm storedMsg, msg *waE2E.Message, prep func(context.Context)) *model.Message {
+	if injected, node := b.injectAIMessageTag(sm.ChatID, msg); injected != nil {
+		msg = injected
+		nodes := []waBinary.Node{node}
+		return b.storeAndSendAfterNodes(jid, sm, msg, nil, prep, &nodes)
+	}
+	return b.storeAndSendAfterNodes(jid, sm, msg, nil, prep, nil)
+}
+
 // storeAndSendAfter is storeAndSend that first runs prep, if not nil, on
 // the sending goroutine: an upload that fills in msg.
 func (b *Backend) storeAndSendAfter(jid types.JID, sm storedMsg, msg, fallback *waE2E.Message, prep func(context.Context)) *model.Message {
+	return b.storeAndSendAfterNodes(jid, sm, msg, fallback, prep, nil)
+}
+
+func (b *Backend) storeAndSendAfterNodes(jid types.JID, sm storedMsg, msg, fallback *waE2E.Message, prep func(context.Context), nodes *[]waBinary.Node) *model.Message {
 	sm.rawPayload = marshal(msg)
 	ctx, chatID, m := b.ctx, sm.ChatID, sm.Message
 	if err := b.store.ensureChat(ctx, b.db, chatID, jid.Server == types.GroupServer, ""); err != nil {
@@ -271,7 +321,7 @@ func (b *Backend) storeAndSendAfter(jid types.JID, sm storedMsg, msg, fallback *
 		b.log.Errorf("store outgoing message: %v", err)
 	}
 	b.emitChat(chatID)
-	b.sendAsyncPrep(chatID, jid, m.ID, msg, fallback, prep)
+	b.sendAsyncPrepNodes(chatID, jid, m.ID, msg, fallback, prep, nodes)
 	if r, ok := b.store.message(ctx, chatID, m.ID); ok {
 		return b.resolve(ctx, r, jid.Server == types.GroupServer)
 	}
@@ -292,6 +342,10 @@ func (b *Backend) sendAsyncOr(chatID string, jid types.JID, id string, msg, fall
 
 // sendAsyncPrep is sendAsyncOr that runs prep, if not nil, before sending.
 func (b *Backend) sendAsyncPrep(chatID string, jid types.JID, id string, msg, fallback *waE2E.Message, prep func(context.Context)) {
+	b.sendAsyncPrepNodes(chatID, jid, id, msg, fallback, prep, nil)
+}
+
+func (b *Backend) sendAsyncPrepNodes(chatID string, jid types.JID, id string, msg, fallback *waE2E.Message, prep func(context.Context), nodes *[]waBinary.Node) {
 	cli := b.client()
 	go func() {
 		if prep != nil {
@@ -301,12 +355,12 @@ func (b *Backend) sendAsyncPrep(chatID string, jid types.JID, id string, msg, fa
 			b.sendFailed(chatID, id, "Couldn't store the message payload.")
 			return
 		}
-		resp, err := cli.SendMessage(b.ctx, jid, msg, whatsmeow.SendRequestExtra{ID: id})
+		resp, err := cli.SendMessage(b.ctx, jid, msg, whatsmeow.SendRequestExtra{ID: id, AdditionalNodes: nodes})
 		// SendMessage can add a message secret and other protocol metadata.
 		_ = b.store.setRawPayload(b.ctx, chatID, id, msg)
 		if err != nil && fallback != nil {
 			b.log.Warnf("send to %s: %v; sending the fallback", chatID, err)
-			resp, err = cli.SendMessage(b.ctx, jid, fallback, whatsmeow.SendRequestExtra{ID: id})
+			resp, err = cli.SendMessage(b.ctx, jid, fallback, whatsmeow.SendRequestExtra{ID: id, AdditionalNodes: nodes})
 			if err == nil {
 				_ = b.store.setRawPayload(b.ctx, chatID, id, fallback)
 			}

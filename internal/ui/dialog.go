@@ -223,7 +223,7 @@ func (u *UI) confirmPanel(gtx C) D {
 	return layout.UniformInset(24).Layout(gtx, func(gtx C) D {
 		children := []layout.FlexChild{
 			layout.Rigid(func(gtx C) D {
-				l := u.label(19.5, d.title, p.Text, labelOpts{weight: font.Medium})
+				l := u.label(19.5, u.locale.Text(d.title), p.Text, labelOpts{weight: font.Medium})
 				l.MaxLines = 0
 				return l.Layout(gtx)
 			}),
@@ -236,7 +236,7 @@ func (u *UI) confirmPanel(gtx C) D {
 			children = append(children,
 				layout.Rigid(layout.Spacer{Height: 12}.Layout),
 				layout.Rigid(func(gtx C) D {
-					l := u.label(14.5, body, p.TextSecondary)
+					l := u.label(14.5, u.locale.Text(body), p.TextSecondary)
 					l.MaxLines = 0
 					return l.Layout(gtx)
 				}))
@@ -333,7 +333,7 @@ func (u *UI) dialogButton(gtx C, key string, bt dialogButton) D {
 		if bt.flat {
 			border = bg
 		}
-		lbl := record(gtx, u.label(14.5, bt.label, fg, labelOpts{weight: font.Medium, maxLines: 1}).Layout)
+		lbl := record(gtx, u.label(14.5, u.locale.Text(bt.label), fg, labelOpts{weight: font.Medium, maxLines: 1}).Layout)
 		h := gtx.Dp(40)
 		w := lbl.size.X + gtx.Dp(48)
 		borderRRect(gtx, image.Rect(0, 0, w, h), h/2, bg, border)
@@ -541,7 +541,9 @@ type toastState struct {
 	anim  tween
 }
 
-func (u *UI) toast(s string) { u.toastMsg.text, u.toastMsg.until = s, u.now().Add(4*time.Second) }
+func (u *UI) toast(s string) {
+	u.toastMsg.text, u.toastMsg.until = u.locale.Text(s), u.now().Add(4*time.Second)
+}
 
 func (u *UI) layoutToast(gtx C) {
 	t := &u.toastMsg

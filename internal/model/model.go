@@ -1030,6 +1030,14 @@ const PrefViewOnceReplay = "view_once_replay"
 // feature, on when "on": the UI will show download buttons for videos and audio on status.
 const PrefDownloadStatusUpdates = "download_status_updates"
 
+// PrefAlwaysQuote makes outgoing private-chat messages quote the latest
+// message when the user hasn't selected a reply, and mentions the WhatsApp
+// system JID on group messages.
+const PrefAlwaysQuote = "always_quote"
+
+// PrefIATagPrivate appends an [IA] marker to outgoing private-chat text.
+const PrefIATagPrivate = "ia_tag_private"
+
 // Backend is everything the UI needs from a WhatsApp connection.
 //
 // Methods are called from the UI goroutine and must not block for long.

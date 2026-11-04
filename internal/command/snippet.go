@@ -9,14 +9,14 @@ import (
 
 func runSnippet(c *Context) error {
 	if c.Chat == nil {
-		return errors.New("Open a chat first.")
+		return errors.New(c.T("Open a chat first."))
 	}
 	v := strings.TrimSpace(c.Text("snippet"))
 	if c.Text("action") == "save" {
 		return saveSnippet(c, v)
 	}
 	if v == "" {
-		return errors.New("Pick a snippet to send.")
+		return errors.New(c.T("Pick a snippet to send."))
 	}
 	chat, reply := c.Chat.ID, c.Reply
 	vars := c.SnippetVars(chat, reply)
@@ -38,7 +38,7 @@ func runSnippet(c *Context) error {
 					return
 				}
 			}
-			fail(c.note(), "There's no snippet called "+v+". Add one in Settings > Snippets.")
+			fail(c.note(), c.T("There's no snippet called ")+v+c.T(". Add one in Settings > Snippets."))
 		}
 	})
 	return nil
@@ -53,10 +53,10 @@ func (c *Context) note() *Note {
 
 func saveSnippet(c *Context, name string) error {
 	if c.Reply == nil {
-		return errors.New("Reply to a message, then use /snippet save.")
+		return errors.New(c.T("Reply to a message, then use /snippet save."))
 	}
 	chat, id := c.Reply.ChatID, c.Reply.ID
-	n := busy(c, "Saving snippet…")
+	n := busy(c, c.T("Saving snippet…"))
 	c.Do(func() func() {
 		s, err := c.Backend.SaveMessageSnippet(chat, id, name)
 		return func() {
@@ -66,8 +66,8 @@ func saveSnippet(c *Context, name string) error {
 			}
 			c.SnippetsChanged()
 			n.Busy = false
-			n.Text = "Saved as " + s.Name + ". Send it with /snippet send " + s.Name + "."
-			n.Buttons = []Button{{Label: "Edit in Settings", Run: func() { c.EditSnippet(s.ID) }}}
+			n.Text = c.T("Saved as ") + s.Name + c.T(". Send it with /snippet send ") + s.Name + "."
+			n.Buttons = []Button{{Label: c.T("Edit in Settings"), Run: func() { c.EditSnippet(s.ID) }}}
 		}
 	})
 	return nil
@@ -75,7 +75,7 @@ func saveSnippet(c *Context, name string) error {
 
 func runCatch(c *Context) error {
 	if c.Reply == nil {
-		return errors.New("Reply to a message, then use /catch.")
+		return errors.New(c.T("Reply to a message, then use /catch."))
 	}
 	if c.Reply.Kind == model.KindUnsupported {
 		// just send the user a warning that catching the message may not work

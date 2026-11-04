@@ -61,9 +61,9 @@ func (u *UI) layoutSendBlocked(gtx C, who string) D {
 		return layout.Center.Layout(gtx, func(gtx C) D {
 			return layout.Inset{Left: 16, Right: 16}.Layout(gtx, func(gtx C) D {
 				return layout.Flex{Alignment: layout.Baseline}.Layout(gtx,
-					layout.Rigid(u.label(15, "Only ", p.TextSecondary, labelOpts{maxLines: 1}).Layout),
+					layout.Rigid(u.label(15, u.locale.Text("Only "), p.TextSecondary, labelOpts{maxLines: 1}).Layout),
 					layout.Rigid(u.label(15, who, p.Green, labelOpts{weight: font.SemiBold, maxLines: 1}).Layout),
-					layout.Rigid(u.label(15, " can send messages", p.TextSecondary, labelOpts{maxLines: 1}).Layout),
+					layout.Rigid(u.label(15, u.locale.Text(" can send messages"), p.TextSecondary, labelOpts{maxLines: 1}).Layout),
 				)
 			})
 		})
@@ -100,7 +100,7 @@ func (u *UI) layoutAnnHeader(gtx C, m *model.Message) D {
 			return layout.Flex{Axis: layout.Vertical}.Layout(gtx,
 				layout.Rigid(u.label(14.5, plainText(name), col, labelOpts{weight: font.SemiBold, maxLines: 1}).Layout),
 				layout.Rigid(layout.Spacer{Height: 3}.Layout),
-				layout.Rigid(u.label(14.5, "Community admin", secondary, labelOpts{maxLines: 1}).Layout),
+				layout.Rigid(u.label(14.5, u.locale.Text("Community admin"), secondary, labelOpts{maxLines: 1}).Layout),
 			)
 		}),
 	)

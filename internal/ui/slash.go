@@ -740,7 +740,7 @@ func (u *UI) layoutSlashPicker(gtx C, sp *slashPick) D {
 					layout.Flexed(1, u.label(13.5, u.locale.Text(sp.opt.Description), p.PopupSub, labelOpts{maxLines: 1}).Layout),
 				)
 			}
-			return u.label(12.5, "PRESS ENTER TO RUN", p.PopupSub, labelOpts{weight: font.SemiBold, maxLines: 1}).Layout(gtx)
+			return u.label(12.5, u.locale.Text("PRESS ENTER TO RUN"), p.PopupSub, labelOpts{weight: font.SemiBold, maxLines: 1}).Layout(gtx)
 		})
 	})
 	// While typing options, the command shows under the header.

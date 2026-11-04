@@ -131,7 +131,7 @@ func (u *UI) cardPhoneEvent(e model.PhoneEvent) bool {
 	case e.Err != "":
 		u.toast(e.Err)
 	case e.ID == "":
-		u.toast("+" + e.Phone + " isn't on WhatsApp.")
+		u.toast(u.locale.Textf("+%s isn't on WhatsApp.", e.Phone))
 	default:
 		name := first(e.Name, u.cardPhoneName, "+"+e.Phone)
 		if !u.openChatByID(e.ID) {

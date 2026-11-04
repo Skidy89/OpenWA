@@ -1395,3 +1395,558 @@ msgstr "the modified text"
 
 msgid "command.replicate"
 msgstr "Replicates a message, with the same sender as the user you reply to."
+
+msgid "ui.message.downloadable"
+msgstr "Download as…"
+
+msgid " can send messages"
+msgstr " can send messages"
+
+msgid "🔒 Messages and calls are end-to-end encrypted. Only people in this chat can read, listen to, or share them."
+msgstr "🔒 Messages and calls are end-to-end encrypted. Only people in this chat can read, listen to, or share them."
+
+msgid "ADD GROUP ICON"
+msgstr "ADD GROUP ICON"
+
+msgid "After you continue, follow the instructions in WhatsApp on your primary phone."
+msgstr "After you continue, follow the instructions in WhatsApp on your primary phone."
+
+msgid "Archived"
+msgstr "Archived"
+
+msgid "CALCULATOR"
+msgstr "CALCULATOR"
+
+msgid "Chat history to copy from your phone"
+msgstr "Chat history to copy from your phone"
+
+msgid "Chat theme"
+msgstr "Chat theme"
+
+msgid "Click to reload QR code"
+msgstr "Click to reload QR code"
+
+msgid "Community admin"
+msgstr "Community admin"
+
+msgid "Create poll"
+msgstr "Create poll"
+
+msgid "Deleted"
+msgstr "Deleted"
+
+msgid "Draft: "
+msgstr "Draft: "
+
+msgid "Drop files here"
+msgstr "Drop files here"
+
+msgid "Edit message"
+msgstr "Edit message"
+
+msgid "Edited"
+msgstr "Edited"
+
+msgid "Enter the phone number connected to your WhatsApp account. We'll use it to prepare this device for linking."
+msgstr "Enter the phone number connected to your WhatsApp account. We'll use it to prepare this device for linking."
+
+msgid "Enter this code in WhatsApp on your phone: "
+msgstr "Enter this code in WhatsApp on your phone: "
+
+msgid "Follow"
+msgstr "Follow"
+
+msgid "Forwarded"
+msgstr "Forwarded"
+
+msgid "FROM THE MESSAGE"
+msgstr "FROM THE MESSAGE"
+
+msgid "Group · "
+msgstr "Group · "
+
+msgid "Group"
+msgstr "Group"
+
+msgid "I'm back"
+msgstr "I'm back"
+
+msgid "Link your WhatsApp"
+msgstr "Link your WhatsApp"
+
+msgid "Log in to OpenWa-Cli"
+msgstr "Log in to OpenWa-Cli"
+
+msgid "Message payload"
+msgstr "Message payload"
+
+msgid "No member changes yet. Changes show here from when this computer sees them."
+msgstr "No member changes yet. Changes show here from when this computer sees them."
+
+msgid "No members found"
+msgstr "No members found"
+
+msgid "Only "
+msgstr "Only "
+
+msgid "Only you see the theme you choose."
+msgstr "Only you see the theme you choose."
+
+msgid "Photos and videos go as media, anything else as a document"
+msgstr "Photos and videos go as media, anything else as a document"
+
+msgid "PRESS ENTER TO RUN"
+msgstr "PRESS ENTER TO RUN"
+
+msgid "Search messages"
+msgstr "Search messages"
+
+msgid "Switch account"
+msgstr "Switch account"
+
+msgid "The code contains eight numbers."
+msgstr "The code contains eight numbers."
+
+msgid "This is a business account."
+msgstr "This is a business account."
+
+msgid "Type a sum, or use the keys"
+msgstr "Type a sum, or use the keys"
+
+msgid "What this message said before each edit, as this computer received it."
+msgstr "What this message said before each edit, as this computer received it."
+
+msgid "Your 8-digit code"
+msgstr "Your 8-digit code"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "Announcements"
+msgstr "Announcements"
+
+msgid "Document"
+msgstr "Document"
+
+msgid "Photos & videos"
+msgstr "Photos & videos"
+
+msgid "Audio"
+msgstr "Audio"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Poll"
+msgstr "Poll"
+
+msgid "All messages"
+msgstr "All messages"
+
+msgid "Mute for 8 hours"
+msgstr "Mute for 8 hours"
+
+msgid "Mute for 1 week"
+msgstr "Mute for 1 week"
+
+msgid "Mute always"
+msgstr "Mute always"
+
+msgid "Muted chats still notify you when you're mentioned or replied to."
+msgstr "Muted chats still notify you when you're mentioned or replied to."
+
+msgid "OK"
+msgstr "OK"
+
+msgid "New messages will disappear from this chat after the selected duration."
+msgstr "New messages will disappear from this chat after the selected duration."
+
+msgid "Done"
+msgstr "Done"
+
+msgid "Copy code"
+msgstr "Copy code"
+
+msgid "Close"
+msgstr "Close"
+
+msgid "Delete for me"
+msgstr "Delete for me"
+
+msgid "No emoji found"
+msgstr "No emoji found"
+
+msgid "Newest first"
+msgstr "Newest first"
+
+msgid "Oldest first"
+msgstr "Oldest first"
+
+msgid "Join group"
+msgstr "Join group"
+
+msgid "Link with phone number"
+msgstr "Link with phone number"
+
+msgid "Back to QR code"
+msgstr "Back to QR code"
+
+msgid "Change phone number"
+msgstr "Change phone number"
+
+msgid "Change picture"
+msgstr "Change picture"
+
+msgid "Remove picture"
+msgstr "Remove picture"
+
+msgid "Send now"
+msgstr "Send now"
+
+msgid "Viewed"
+msgstr "Viewed"
+
+msgid "Status privacy"
+msgstr "Status privacy"
+
+msgid "Verify security code"
+msgstr "Verify security code"
+
+msgid "Invite to group via link"
+msgstr "Invite to group via link"
+
+msgid "Starred messages"
+msgstr "Starred messages"
+
+msgid "Advanced chat privacy"
+msgstr "Advanced chat privacy"
+
+msgid "Encryption"
+msgstr "Encryption"
+
+msgid "Unblock "
+msgstr "Unblock "
+
+msgid "Block "
+msgstr "Block "
+
+msgid "Group permissions"
+msgstr "Group permissions"
+
+msgid "Add group to a community"
+msgstr "Add group to a community"
+
+msgid "Create a similar group"
+msgstr "Create a similar group"
+
+msgid "See member changes"
+msgstr "See member changes"
+
+msgid "Report group"
+msgstr "Report group"
+
+msgid "Notification settings"
+msgstr "Notification settings"
+
+msgid "Media, links and docs"
+msgstr "Media, links and docs"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Check for updates"
+msgstr "Check for updates"
+
+msgid "What's new in "
+msgstr "What's new in "
+
+msgid "Español"
+msgstr "Español"
+
+msgid "Messages are end-to-end encrypted. Click to verify."
+msgstr "Messages are end-to-end encrypted. Click to verify."
+
+msgid "Messages are end-to-end encrypted. Click to learn more."
+msgstr "Messages are end-to-end encrypted. Click to learn more."
+
+msgid "No file dialog found. Install zenity or kdialog to attach files."
+msgstr "No file dialog found. Install zenity or kdialog to attach files."
+
+msgid "Open a chat to send files to it."
+msgstr "Open a chat to send files to it."
+
+msgid "Folders can't be sent."
+msgstr "Folders can't be sent."
+
+msgid "Couldn't open the map."
+msgstr "Couldn't open the map."
+
+msgid "Couldn't open the link."
+msgstr "Couldn't open the link."
+
+msgid "Reporting isn't supported in this app yet. Report from your phone."
+msgstr "Reporting isn't supported in this app yet. Report from your phone."
+
+msgid "Calls aren't supported in this app yet. Call from your phone."
+msgstr "Calls aren't supported in this app yet. Call from your phone."
+
+msgid "Code copied"
+msgstr "Code copied"
+
+msgid "Added 1 member"
+msgstr "Added 1 member"
+
+msgid "Link copied"
+msgstr "Link copied"
+
+msgid "Getting the link…"
+msgstr "Getting the link…"
+
+msgid "Couldn't open your email app."
+msgstr "Couldn't open your email app."
+
+msgid "That message isn't available."
+msgstr "That message isn't available."
+
+msgid "Couldn't apply the edits; the photo was sent as it was."
+msgstr "Couldn't apply the edits; the photo was sent as it was."
+
+msgid "Couldn't copy the photo."
+msgstr "Couldn't copy the photo."
+
+msgid "Photo copied"
+msgstr "Photo copied"
+
+msgid "This audio can't play here. Opening it in your audio player…"
+msgstr "This audio can't play here. Opening it in your audio player…"
+
+msgid "That chat isn't in your chat list."
+msgstr "That chat isn't in your chat list."
+
+msgid "You're already in this group."
+msgstr "You're already in this group."
+
+msgid "Request sent. You'll join once an admin approves it."
+msgstr "Request sent. You'll join once an admin approves it."
+
+msgid "You joined the group."
+msgstr "You joined the group."
+
+msgid "Error: "
+msgstr "Error: "
+
+msgid "Verification code expired or error occurred. Please try again."
+msgstr "Verification code expired or error occurred. Please try again."
+
+msgid "That sticker is still loading."
+msgstr "That sticker is still loading."
+
+msgid "No file dialog found. Install zenity or kdialog to choose a picture."
+msgstr "No file dialog found. Install zenity or kdialog to choose a picture."
+
+msgid "Couldn't use this picture."
+msgstr "Couldn't use this picture."
+
+msgid "Give the group a name first."
+msgstr "Give the group a name first."
+
+msgid "Privacy mode is on. Point at something to see it."
+msgstr "Privacy mode is on. Point at something to see it."
+
+msgid "Privacy mode is off"
+msgstr "Privacy mode is off"
+
+msgid "Scheduled message cancelled"
+msgstr "Scheduled message cancelled"
+
+msgid "Set to view once"
+msgstr "Set to view once"
+
+msgid "Reply sent"
+msgstr "Reply sent"
+
+msgid "This video can't play here. Press play to open it in your video player."
+msgstr "This video can't play here. Press play to open it in your video player."
+
+msgid "Opening video…"
+msgstr "Opening video…"
+
+msgid "Send or close the files you're attaching to a chat first."
+msgstr "Send or close the files you're attaching to a chat first."
+
+msgid "Send or close your current attachments first."
+msgstr "Send or close your current attachments first."
+
+msgid "For added privacy, WhatsApp sends view once messages only to your phone. Open it there."
+msgstr "For added privacy, WhatsApp sends view once messages only to your phone. Open it there."
+
+msgid "For added privacy, you can't open view once messages you send."
+msgstr "For added privacy, you can't open view once messages you send."
+
+msgid "You opened this view once message already."
+msgstr "You opened this view once message already."
+
+msgid "Couldn't open the file dialog: %s"
+msgstr "Couldn't open the file dialog: %s"
+
+msgid "You can send up to %d files at once."
+msgstr "You can send up to %d files at once."
+
+msgid "+%s isn't on WhatsApp."
+msgstr "+%s isn't on WhatsApp."
+
+msgid "Added %d members"
+msgstr "Added %d members"
+
+msgid "Couldn't add %s. Invite them with the group link instead."
+msgstr "Couldn't add %s. Invite them with the group link instead."
+
+msgid "Couldn't save the photo: %s"
+msgstr "Couldn't save the photo: %s"
+
+msgid "Saved to %s"
+msgstr "Saved to %s"
+
+msgid "Sending verification code... to +%s"
+msgstr "Sending verification code... to +%s"
+
+msgid "Error sending verification code: %s"
+msgstr "Error sending verification code: %s"
+
+msgid "Error: %s"
+msgstr "Error: %s"
+
+msgid "Verification code sent to +%s"
+msgstr "Verification code sent to +%s"
+
+msgid "+%s isn't on WhatsApp. Check that the number has its country code."
+msgstr "+%s isn't on WhatsApp. Check that the number has its country code."
+
+msgid "Always quote WhatsApp"
+msgstr "Always quote WhatsApp"
+
+msgid "Add IA tag on private chats"
+msgstr "Add IA tag on private chats"
+
+msgid "Automatically quote the latest message when you send text or files in a private chat."
+msgstr "Automatically quote the latest message when you send text or files in a private chat."
+
+msgid "Append [IA] to text messages and file captions in private chats."
+msgstr "Append [IA] to text messages and file captions in private chats."
+
+msgid "no chat open"
+msgstr "No chat open."
+
+msgid "failed to send message"
+msgstr "Failed to send message."
+
+msgid "no text provided"
+msgstr "No text provided."
+
+msgid "no members in group"
+msgstr "No members in group."
+
+msgid "Open a chat first."
+msgstr "Open a chat first."
+
+msgid "Pick a snippet to send."
+msgstr "Pick a snippet to send."
+
+msgid "There's no snippet called "
+msgstr "There's no snippet called "
+
+msgid ". Add one in Settings > Snippets."
+msgstr ". Add one in Settings > Snippets."
+
+msgid "Reply to a message, then use /snippet save."
+msgstr "Reply to a message, then use /snippet save."
+
+msgid "Saving snippet…"
+msgstr "Saving snippet…"
+
+msgid "Saved as "
+msgstr "Saved as "
+
+msgid ". Send it with /snippet send "
+msgstr ". Send it with /snippet send "
+
+msgid "Edit in Settings"
+msgstr "Edit in Settings"
+
+msgid "Reply to a message, then use /catch."
+msgstr "Reply to a message, then use /catch."
+
+msgid "This can't be done here."
+msgstr "This can't be done here."
+
+msgid "Sends "
+msgstr "Sends "
+
+msgid "It was sent already:\n"
+msgstr "It was sent already:\n"
+
+msgid "Sent:\n"
+msgstr "Sent:\n"
+
+msgid "Cancelled:\n"
+msgstr "Cancelled:\n"
+
+msgid "Nothing is scheduled in this chat. "
+msgstr "Nothing is scheduled in this chat. "
+
+msgid "And "
+msgstr "And "
+
+msgid " more. "
+msgstr " more. "
+
+msgid "You're AFK until you send a message. Whoever messages you, or mentions you "
+msgstr "You're AFK until you send a message. Whoever messages you, or mentions you "
+
+msgid "in a group, gets this reply once:\n"
+msgstr "in a group, gets this reply once:\n"
+
+msgid "You were back already."
+msgstr "You were back already."
+
+msgid "Couldn't work that out: "
+msgstr "Couldn't work that out: "
+
+msgid "Missing required options. You must provide both a sender and text to send a fake message."
+msgstr "Missing required options. You must provide both a sender and text to send a fake message."
+
+msgid "the answer is too big"
+msgstr "The answer is too big"
+
+msgid "it divides by zero"
+msgstr "It divides by zero"
+
+msgid "mod 0 has no answer"
+msgstr "Mod 0 has no answer"
+
+msgid "only whole numbers from 0 have a factorial"
+msgstr "Only whole numbers from 0 have a factorial"
+
+msgid "a negative number has no square root"
+msgstr "A negative number has no square root"
+
+msgid "only numbers above 0 have a logarithm"
+msgstr "Only numbers above 0 have a logarithm"
+
+msgid "it isn't finished"
+msgstr "It isn't finished"
+
+msgid "a bracket isn't closed"
+msgstr "A bracket isn't closed"
+
+msgid "type a time like 21:00, 2h or tomorrow 08:00"
+msgstr "Type a time like 21:00, 2h or tomorrow 08:00"
+
+msgid "Open a chat first."
+msgstr "Open a chat first."
+
+msgid "Reply to a message, then use /replicate."
+msgstr "Reply to a message, then use /replicate."
+
+msgid "No text to replicate."
+msgstr "No text to replicate."

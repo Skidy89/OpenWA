@@ -547,7 +547,7 @@ func (u *UI) menuPanel(gtx C, prefix string, items []menuItem) D {
 			w = max(w, gtx.Dp(300)) // it wraps to the menu's width
 			continue
 		}
-		l := record(gtx, u.label(15, it.label, p.Text, labelOpts{maxLines: 1}).Layout)
+		l := record(gtx, u.label(15, u.locale.Text(it.label), p.Text, labelOpts{maxLines: 1}).Layout)
 		extra := 49 + 24
 		if it.arrow {
 			extra += 28
@@ -593,7 +593,7 @@ func (u *UI) menuRow(gtx C, prefix string, it menuItem) D {
 	}
 	if it.note {
 		return layout.Inset{Left: 24, Right: 20, Top: 8, Bottom: 8}.Layout(gtx,
-			u.label(13, it.label, p.PopupSub, labelOpts{}).Layout)
+			u.label(13, u.locale.Text(it.label), p.PopupSub, labelOpts{}).Layout)
 	}
 	content := func(gtx C) D {
 		h := gtx.Dp(40)
@@ -613,12 +613,12 @@ func (u *UI) menuRow(gtx C, prefix string, it menuItem) D {
 				return layout.Flex{Alignment: layout.Middle}.Layout(gtx,
 					layout.Flexed(1, func(gtx C) D {
 						return layout.Flex{Axis: layout.Vertical}.Layout(gtx,
-							layout.Rigid(u.label(15, it.label, col, labelOpts{maxLines: 1}).Layout),
+							layout.Rigid(u.label(15, u.locale.Text(it.label), col, labelOpts{maxLines: 1}).Layout),
 							layout.Rigid(func(gtx C) D {
 								if it.sub == "" {
 									return D{}
 								}
-								return layout.Inset{Top: 2}.Layout(gtx, u.label(13, it.sub, p.PopupSub, labelOpts{maxLines: 1}).Layout)
+								return layout.Inset{Top: 2}.Layout(gtx, u.label(13, u.locale.Text(it.sub), p.PopupSub, labelOpts{maxLines: 1}).Layout)
 							}),
 						)
 					}),

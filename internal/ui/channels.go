@@ -160,7 +160,7 @@ func (u *UI) suggestedRow(gtx C, ch *model.Channel) D {
 						fillRRect(gtx, image.Rectangle{Max: sz}, sz.Y/2, bg)
 						gtx.Constraints = layout.Exact(sz)
 						return layout.Center.Layout(gtx,
-							u.label(15, "Follow", p.ChipActiveText, labelOpts{weight: font.SemiBold, maxLines: 1}).Layout)
+							u.label(15, u.locale.Text("Follow"), p.ChipActiveText, labelOpts{weight: font.SemiBold, maxLines: 1}).Layout)
 					})
 				}),
 			)

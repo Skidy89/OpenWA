@@ -226,7 +226,7 @@ func (u *UI) layoutAwayBar(gtx C) D {
 						return clickable(gtx, cl, func(gtx C) D {
 							return background(gtx, faded(p.Hover, u.hover(gtx, cl)), 16, func(gtx C) D {
 								return layout.UniformInset(8).Layout(gtx,
-									u.label(14, "I'm back", p.Green, labelOpts{weight: font.Medium, maxLines: 1}).Layout)
+									u.label(14, u.locale.Text("I'm back"), p.Green, labelOpts{weight: font.Medium, maxLines: 1}).Layout)
 							})
 						})
 					}),

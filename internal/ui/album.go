@@ -268,7 +268,7 @@ func (u *UI) layoutAlbum(gtx C, c *model.Chat, r convRow, maxW int) (D, []image.
 			return layout.Flex{Alignment: layout.Middle}.Layout(gtx,
 				layout.Rigid(iconW(icForward, 16, secondary)),
 				layout.Rigid(layout.Spacer{Width: 4}.Layout),
-				layout.Rigid(u.label(13, "Forwarded", secondary, labelOpts{italic: true, maxLines: 1}).Layout),
+				layout.Rigid(u.label(13, u.locale.Text("Forwarded"), secondary, labelOpts{italic: true, maxLines: 1}).Layout),
 			)
 		})
 	}

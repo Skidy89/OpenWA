@@ -187,6 +187,7 @@ type UI struct {
 	slash   slashState   // slash commands and their notes (slash.go)
 	// Extra features turned on (extras.go); slash commands are slash.on.
 	adminMention, rawPhotos, editHistory, keepDeleted, viewOnceReplay, downloadStatusUpdates bool
+	alwaysQuote, iaTagPrivate                                                                bool
 	// captureBlocked keeps the window out of screenshots (viewonce.go).
 	captureBlocked bool
 	// privacy is privacy mode (privacy.go), and secret how much of what

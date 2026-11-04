@@ -289,7 +289,7 @@ func (u *UI) layoutCalcPad(gtx C, sp *slashPick) D {
 		gtx.Constraints.Min.X = gtx.Constraints.Max.X
 		var expr, answer layout.Widget
 		if sum == "" {
-			expr = u.label(15, "Type a sum, or use the keys", p.PopupSub, labelOpts{maxLines: 1}).Layout
+			expr = u.label(15, u.locale.Text("Type a sum, or use the keys"), p.PopupSub, labelOpts{maxLines: 1}).Layout
 		} else {
 			expr = u.label(17, sum, p.Text, labelOpts{maxLines: 2}).Layout
 		}
@@ -304,7 +304,7 @@ func (u *UI) layoutCalcPad(gtx C, sp *slashPick) D {
 			answer = u.label(30, "= …", p.PopupSub, labelOpts{weight: font.SemiBold, maxLines: 1}).Layout
 		}
 		return layout.Flex{Axis: layout.Vertical}.Layout(gtx,
-			layout.Rigid(u.label(12.5, "CALCULATOR", p.PopupSub, labelOpts{weight: font.SemiBold, maxLines: 1}).Layout),
+			layout.Rigid(u.label(12.5, u.locale.Text("CALCULATOR"), p.PopupSub, labelOpts{weight: font.SemiBold, maxLines: 1}).Layout),
 			layout.Rigid(layout.Spacer{Height: 8}.Layout),
 			layout.Rigid(expr),
 			layout.Rigid(layout.Spacer{Height: 2}.Layout),
@@ -417,7 +417,7 @@ func (u *UI) layoutCalcChips(gtx C, nums []float64) D {
 		}
 		cs = append(cs, chip{key: "calc:sum", label: "Σ " + command.FormatNumber(total), total: true})
 	}
-	title := record(gtx, u.label(12.5, "FROM THE MESSAGE", p.PopupSub, labelOpts{weight: font.SemiBold, maxLines: 1}).Layout)
+	title := record(gtx, u.label(12.5, u.locale.Text("FROM THE MESSAGE"), p.PopupSub, labelOpts{weight: font.SemiBold, maxLines: 1}).Layout)
 	title.at(gtx, 0, 0)
 	maxW := gtx.Constraints.Max.X
 	gap, chipH := gtx.Dp(6), gtx.Dp(32)

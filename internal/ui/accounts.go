@@ -512,7 +512,7 @@ func (u *UI) layoutLoginSwitch(gtx C) {
 					return layout.Flex{Alignment: layout.Middle}.Layout(gtx,
 						layout.Rigid(iconW(icSwitchAccount, 20, p.Icon)),
 						layout.Rigid(layout.Spacer{Width: 10}.Layout),
-						layout.Rigid(u.label(14, "Switch account", p.Text).Layout),
+						layout.Rigid(u.label(14, u.locale.Text("Switch account"), p.Text).Layout),
 					)
 				})
 			})

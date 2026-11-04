@@ -196,7 +196,7 @@ msgid "Slash commands and more, not in WhatsApp"
 msgstr "Comandos extras"
 
 msgid "Snippets"
-msgstr "Snippets"
+msgstr "Mensajes guardados"
 
 msgid "Saved messages and payloads"
 msgstr "Mensajes y payloads guardados"
@@ -265,7 +265,8 @@ msgid "command.sticker.top"
 msgstr "paquete del sticker"
 
 msgid "command.sticker.bottom"
-msgstr "autor del sticker"
+msgstr "autor del paquete de stickers"
+
 msgid "command.sticker.ai"
 msgstr "marca tu sticker con la etiqueta: AI"
 
@@ -978,7 +979,7 @@ msgid "Save text or a message payload"
 msgstr "Guardar texto o el payload de un mensaje"
 
 msgid "Payload"
-msgstr "Payload"
+msgstr "Contenido"
 
 msgid "No snippets yet. Add one here, or reply to a message and use /snippet save."
 msgstr "Aún no hay snippets. Añade uno aquí o responde a un mensaje y usa /snippet save."
@@ -1370,6 +1371,9 @@ msgstr "Descartar"
 msgid "ui.message.downloadable"
 msgstr "Descargar como…"
 
+msgid "ui.message.downloadas"
+msgstr "Descargar como…"
+
 msgid "ui.message.goToMessage"
 msgstr "Ir a mensaje"
 
@@ -1391,3 +1395,557 @@ msgstr "el texto modificado"
 
 msgid "command.replicate"
 msgstr "Replica un mensaje que otra persona envio, eliminando el mensaje original"
+
+msgid " can send messages"
+msgstr " pueden enviar mensajes"
+
+msgid "🔒 Messages and calls are end-to-end encrypted. Only people in this chat can read, listen to, or share them."
+msgstr "🔒 Los mensajes y las llamadas están cifrados de extremo a extremo. Solo las personas en este chat pueden leerlos, escucharlos o compartirlos."
+
+msgid "ADD GROUP ICON"
+msgstr "AÑADIR ICONO DEL GRUPO"
+
+msgid "After you continue, follow the instructions in WhatsApp on your primary phone."
+msgstr "Después de continuar, sigue las instrucciones de WhatsApp en tu teléfono principal."
+
+msgid "Archived"
+msgstr "Archivados"
+
+msgid "CALCULATOR"
+msgstr "CALCULADORA"
+
+msgid "Chat history to copy from your phone"
+msgstr "Historial de chats para copiar desde tu teléfono"
+
+msgid "Chat theme"
+msgstr "Tema del chat"
+
+msgid "Click to reload QR code"
+msgstr "Haz clic para volver a cargar el código QR"
+
+msgid "Community admin"
+msgstr "Administrador de la comunidad"
+
+msgid "Create poll"
+msgstr "Crear encuesta"
+
+msgid "Deleted"
+msgstr "Eliminado"
+
+msgid "Draft: "
+msgstr "Borrador: "
+
+msgid "Drop files here"
+msgstr "Suelta los archivos aquí"
+
+msgid "Edit message"
+msgstr "Editar mensaje"
+
+msgid "Edited"
+msgstr "Editado"
+
+msgid "Enter the phone number connected to your WhatsApp account. We'll use it to prepare this device for linking."
+msgstr "Escribe el número de teléfono asociado a tu cuenta de WhatsApp. Lo usaremos para preparar este dispositivo para vincularlo."
+
+msgid "Enter this code in WhatsApp on your phone: "
+msgstr "Escribe este código en WhatsApp desde tu teléfono: "
+
+msgid "Follow"
+msgstr "Seguir"
+
+msgid "Forwarded"
+msgstr "Reenviado"
+
+msgid "FROM THE MESSAGE"
+msgstr "DEL MENSAJE"
+
+msgid "Group · "
+msgstr "Grupo · "
+
+msgid "Group"
+msgstr "Grupo"
+
+msgid "I'm back"
+msgstr "Ya volví"
+
+msgid "Link your WhatsApp"
+msgstr "Vincula tu WhatsApp"
+
+msgid "Log in to OpenWa-Cli"
+msgstr "Iniciar sesión en OpenWa-Cli"
+
+msgid "Message payload"
+msgstr "Contenido del mensaje"
+
+msgid "No member changes yet. Changes show here from when this computer sees them."
+msgstr "Aún no hay cambios de miembros. Aquí aparecerán los cambios que detecte esta computadora."
+
+msgid "No members found"
+msgstr "No se encontraron miembros"
+
+msgid "Only "
+msgstr "Solo "
+
+msgid "Only you see the theme you choose."
+msgstr "Solo tú puedes ver el tema que elijas."
+
+msgid "Photos and videos go as media, anything else as a document"
+msgstr "Las fotos y los videos se envían como archivos multimedia; todo lo demás, como documento"
+
+msgid "PRESS ENTER TO RUN"
+msgstr "PULSA INTRO PARA EJECUTAR"
+
+msgid "Search messages"
+msgstr "Buscar mensajes"
+
+msgid "Switch account"
+msgstr "Cambiar de cuenta"
+
+msgid "The code contains eight numbers."
+msgstr "El código contiene ocho dígitos."
+
+msgid "This is a business account."
+msgstr "Esta es una cuenta de empresa."
+
+msgid "Type a sum, or use the keys"
+msgstr "Escribe una operación o usa las teclas"
+
+msgid "What this message said before each edit, as this computer received it."
+msgstr "Lo que decía este mensaje antes de cada edición, según lo recibió esta computadora."
+
+msgid "Your 8-digit code"
+msgstr "Tu código de 8 dígitos"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Announcements"
+msgstr "Anuncios"
+
+msgid "Document"
+msgstr "Documento"
+
+msgid "Photos & videos"
+msgstr "Fotos y videos"
+
+msgid "Audio"
+msgstr "Audio"
+
+msgid "Contact"
+msgstr "Contacto"
+
+msgid "Poll"
+msgstr "Encuesta"
+
+msgid "All messages"
+msgstr "Todos los mensajes"
+
+msgid "Mute for 8 hours"
+msgstr "Silenciar por 8 horas"
+
+msgid "Mute for 1 week"
+msgstr "Silenciar por 1 semana"
+
+msgid "Mute always"
+msgstr "Silenciar siempre"
+
+msgid "Muted chats still notify you when you're mentioned or replied to."
+msgstr "Los chats silenciados seguirán notificándote cuando te mencionen o respondan a tus mensajes."
+
+msgid "OK"
+msgstr "Aceptar"
+
+msgid "New messages will disappear from this chat after the selected duration."
+msgstr "Los mensajes nuevos desaparecerán de este chat después del tiempo seleccionado."
+
+msgid "Done"
+msgstr "Listo"
+
+msgid "Copy code"
+msgstr "Copiar código"
+
+msgid "Close"
+msgstr "Cerrar"
+
+msgid "Delete for me"
+msgstr "Eliminar para mí"
+
+msgid "No emoji found"
+msgstr "No se encontraron emojis"
+
+msgid "Newest first"
+msgstr "Más recientes primero"
+
+msgid "Oldest first"
+msgstr "Más antiguos primero"
+
+msgid "Join group"
+msgstr "Unirse al grupo"
+
+msgid "Link with phone number"
+msgstr "Vincular con el número de teléfono"
+
+msgid "Back to QR code"
+msgstr "Volver al código QR"
+
+msgid "Change phone number"
+msgstr "Cambiar número de teléfono"
+
+msgid "Change picture"
+msgstr "Cambiar foto"
+
+msgid "Remove picture"
+msgstr "Eliminar foto"
+
+msgid "Send now"
+msgstr "Enviar ahora"
+
+msgid "Viewed"
+msgstr "Visto"
+
+msgid "Status privacy"
+msgstr "Privacidad de estados"
+
+msgid "Verify security code"
+msgstr "Verificar código de seguridad"
+
+msgid "Invite to group via link"
+msgstr "Invitar al grupo mediante un enlace"
+
+msgid "Starred messages"
+msgstr "Mensajes destacados"
+
+msgid "Advanced chat privacy"
+msgstr "Privacidad avanzada del chat"
+
+msgid "Encryption"
+msgstr "Cifrado"
+
+msgid "Unblock "
+msgstr "Desbloquear "
+
+msgid "Block "
+msgstr "Bloquear "
+
+msgid "Group permissions"
+msgstr "Permisos del grupo"
+
+msgid "Add group to a community"
+msgstr "Añadir el grupo a una comunidad"
+
+msgid "Create a similar group"
+msgstr "Crear un grupo similar"
+
+msgid "See member changes"
+msgstr "Ver cambios de miembros"
+
+msgid "Report group"
+msgstr "Reportar grupo"
+
+msgid "Notification settings"
+msgstr "Configuración de notificaciones"
+
+msgid "Media, links and docs"
+msgstr "Archivos, enlaces y documentos"
+
+msgid "Version"
+msgstr "Versión"
+
+msgid "Check for updates"
+msgstr "Buscar actualizaciones"
+
+msgid "What's new in "
+msgstr "Novedades de "
+
+msgid "Español"
+msgstr "Español"
+
+msgid "Messages are end-to-end encrypted. Click to verify."
+msgstr "Los mensajes están cifrados de extremo a extremo. Haz clic para verificar."
+
+msgid "Messages are end-to-end encrypted. Click to learn more."
+msgstr "Los mensajes están cifrados de extremo a extremo. Haz clic para obtener más información."
+
+msgid "No file dialog found. Install zenity or kdialog to attach files."
+msgstr "No se encontró un selector de archivos. Instala zenity o kdialog para adjuntar archivos."
+
+msgid "Open a chat to send files to it."
+msgstr "Abre un chat para enviarle archivos."
+
+msgid "Folders can't be sent."
+msgstr "No se pueden enviar carpetas."
+
+msgid "Couldn't open the map."
+msgstr "No se pudo abrir el mapa."
+
+msgid "Couldn't open the link."
+msgstr "No se pudo abrir el enlace."
+
+msgid "Reporting isn't supported in this app yet. Report from your phone."
+msgstr "Esta aplicación aún no permite reportar. Hazlo desde tu teléfono."
+
+msgid "Calls aren't supported in this app yet. Call from your phone."
+msgstr "Esta aplicación aún no permite hacer llamadas. Llama desde tu teléfono."
+
+msgid "Code copied"
+msgstr "Código copiado"
+
+msgid "Added 1 member"
+msgstr "Se añadió a 1 miembro"
+
+msgid "Link copied"
+msgstr "Enlace copiado"
+
+msgid "Getting the link…"
+msgstr "Obteniendo el enlace…"
+
+msgid "Couldn't open your email app."
+msgstr "No se pudo abrir la aplicación de correo."
+
+msgid "That message isn't available."
+msgstr "Ese mensaje no está disponible."
+
+msgid "Couldn't apply the edits; the photo was sent as it was."
+msgstr "No se pudieron aplicar las ediciones; la foto se envió sin cambios."
+
+msgid "Couldn't copy the photo."
+msgstr "No se pudo copiar la foto."
+
+msgid "Photo copied"
+msgstr "Foto copiada"
+
+msgid "This audio can't play here. Opening it in your audio player…"
+msgstr "Este audio no se puede reproducir aquí. Se abrirá en tu reproductor de audio…"
+
+msgid "That chat isn't in your chat list."
+msgstr "Ese chat no está en tu lista de chats."
+
+msgid "You're already in this group."
+msgstr "Ya formas parte de este grupo."
+
+msgid "Request sent. You'll join once an admin approves it."
+msgstr "Se envió la solicitud. Te unirás cuando la apruebe un administrador."
+
+msgid "You joined the group."
+msgstr "Te uniste al grupo."
+
+msgid "Error: "
+msgstr "Error: "
+
+msgid "Verification code expired or error occurred. Please try again."
+msgstr "El código de verificación venció o se produjo un error. Inténtalo de nuevo."
+
+msgid "That sticker is still loading."
+msgstr "El sticker todavía se está cargando."
+
+msgid "No file dialog found. Install zenity or kdialog to choose a picture."
+msgstr "No se encontró un selector de archivos. Instala zenity o kdialog para elegir una imagen."
+
+msgid "Couldn't use this picture."
+msgstr "No se pudo usar esta imagen."
+
+msgid "Give the group a name first."
+msgstr "Primero, ponle un nombre al grupo."
+
+msgid "Privacy mode is on. Point at something to see it."
+msgstr "El modo de privacidad está activado. Señala algo para verlo."
+
+msgid "Privacy mode is off"
+msgstr "El modo de privacidad está desactivado"
+
+msgid "Scheduled message cancelled"
+msgstr "Se canceló el mensaje programado"
+
+msgid "Set to view once"
+msgstr "Configurado para verse una sola vez"
+
+msgid "Reply sent"
+msgstr "Respuesta enviada"
+
+msgid "This video can't play here. Press play to open it in your video player."
+msgstr "Este video no se puede reproducir aquí. Pulsa reproducir para abrirlo en tu reproductor de video."
+
+msgid "Opening video…"
+msgstr "Abriendo video…"
+
+msgid "Send or close the files you're attaching to a chat first."
+msgstr "Primero envía o cierra los archivos que estás adjuntando a un chat."
+
+msgid "Send or close your current attachments first."
+msgstr "Primero envía o cierra los archivos adjuntos actuales."
+
+msgid "For added privacy, WhatsApp sends view once messages only to your phone. Open it there."
+msgstr "Para proteger aún más tu privacidad, WhatsApp solo envía los mensajes de visualización única a tu teléfono. Ábrelo allí."
+
+msgid "For added privacy, you can't open view once messages you send."
+msgstr "Para proteger aún más tu privacidad, no puedes abrir los mensajes de visualización única que envías."
+
+msgid "You opened this view once message already."
+msgstr "Ya abriste este mensaje de visualización única."
+
+msgid "Couldn't open the file dialog: %s"
+msgstr "No se pudo abrir el selector de archivos: %s"
+
+msgid "You can send up to %d files at once."
+msgstr "Puedes enviar hasta %d archivos a la vez."
+
+msgid "+%s isn't on WhatsApp."
+msgstr "+%s no está en WhatsApp."
+
+msgid "Added %d members"
+msgstr "Se añadieron %d miembros."
+
+msgid "Couldn't add %s. Invite them with the group link instead."
+msgstr "No se pudo añadir a %s. Invítalos mediante el enlace del grupo."
+
+msgid "Couldn't save the photo: %s"
+msgstr "No se pudo guardar la foto: %s"
+
+msgid "Saved to %s"
+msgstr "Guardado en %s"
+
+msgid "Sending verification code... to +%s"
+msgstr "Enviando el código de verificación a +%s…"
+
+msgid "Error sending verification code: %s"
+msgstr "Error al enviar el código de verificación: %s"
+
+msgid "Error: %s"
+msgstr "Error: %s"
+
+msgid "Verification code sent to +%s"
+msgstr "Código de verificación enviado a +%s"
+
+msgid "+%s isn't on WhatsApp. Check that the number has its country code."
+msgstr "+%s no está en WhatsApp. Comprueba que el número incluya el código de país."
+
+msgid "Always quote WhatsApp"
+msgstr "Citar siempre en WhatsApp"
+
+
+msgid "Add IA tag on private chats"
+msgstr "Añadir etiqueta IA en chats privados"
+
+
+msgid "Automatically quote the latest message in private chats and mention 0@s.whatsapp.net in group messages."
+msgstr "Cita automáticamente el mensaje más reciente en chats privados y menciona a 0@s.whatsapp.net en los grupos."
+
+msgid "Append [IA] to text messages and file captions in private chats."
+msgstr "Añade [IA] al final de los mensajes de texto y los pies de foto de archivos en chats privados."
+
+msgid "no chat open"
+msgstr "No hay ningún chat abierto."
+
+msgid "failed to send message"
+msgstr "No se pudo enviar el mensaje."
+
+msgid "no text provided"
+msgstr "No se proporcionó texto."
+
+msgid "no members in group"
+msgstr "No hay miembros en el grupo."
+
+msgid "Open a chat first."
+msgstr "Primero, abre un chat."
+
+msgid "Pick a snippet to send."
+msgstr "Elige un mensaje guardado para enviar."
+
+msgid "There's no snippet called "
+msgstr "No hay ningún mensaje guardado llamado "
+
+msgid ". Add one in Settings > Snippets."
+msgstr ". Añade uno en Configuración > Mensajes guardados."
+
+msgid "Reply to a message, then use /snippet save."
+msgstr "Responde a un mensaje y usa /snippet save."
+
+msgid "Saving snippet…"
+msgstr "Guardando mensaje…"
+
+msgid "Saved as "
+msgstr "Guardado como "
+
+msgid ". Send it with /snippet send "
+msgstr ". Envíalo con /snippet send "
+
+msgid "Edit in Settings"
+msgstr "Editar en Configuración"
+
+msgid "Reply to a message, then use /catch."
+msgstr "Responde a un mensaje y usa /catch."
+
+msgid "This can't be done here."
+msgstr "Esto no se puede hacer aquí."
+
+msgid "Sends "
+msgstr "Envía "
+
+msgid "It was sent already:\n"
+msgstr "Ya se envió:\n"
+
+msgid "Sent:\n"
+msgstr "Enviado:\n"
+
+msgid "Cancelled:\n"
+msgstr "Cancelado:\n"
+
+msgid "Nothing is scheduled in this chat. "
+msgstr "No hay nada programado en este chat. "
+
+msgid "And "
+msgstr "Y "
+
+msgid " more. "
+msgstr " más. "
+
+msgid "You're AFK until you send a message. Whoever messages you, or mentions you "
+msgstr "Estás ausente hasta que envíes un mensaje. Quien te escriba o te mencione "
+
+msgid "in a group, gets this reply once:\n"
+msgstr "en un grupo recibirá esta respuesta una vez:\n"
+
+msgid "You were back already."
+msgstr "Ya habías vuelto."
+
+msgid "Couldn't work that out: "
+msgstr "No se pudo resolver: "
+
+msgid "Missing required options. You must provide both a sender and text to send a fake message."
+msgstr "Faltan opciones obligatorias. Debes proporcionar un remitente y texto para enviar un mensaje falso."
+
+msgid "the answer is too big"
+msgstr "La respuesta es demasiado grande"
+
+msgid "it divides by zero"
+msgstr "Divide entre cero"
+
+msgid "mod 0 has no answer"
+msgstr "El módulo 0 no tiene respuesta"
+
+msgid "only whole numbers from 0 have a factorial"
+msgstr "Solo los números enteros desde 0 tienen factorial"
+
+msgid "a negative number has no square root"
+msgstr "Un número negativo no tiene raíz cuadrada"
+
+msgid "only numbers above 0 have a logarithm"
+msgstr "Solo los números mayores que 0 tienen logaritmo"
+
+msgid "it isn't finished"
+msgstr "No está terminado"
+
+msgid "a bracket isn't closed"
+msgstr "Falta cerrar un paréntesis"
+
+msgid "type a time like 21:00, 2h or tomorrow 08:00"
+msgstr "Escribe una hora como 21:00, 2h o mañana 08:00"
+
+msgid "Open a chat first."
+msgstr "Primero, abre un chat."
+
+msgid "Reply to a message, then use /replicate."
+msgstr "Responde a un mensaje y luego usa /replicate."
+
+msgid "No text to replicate."
+msgstr "No hay texto que replicar."

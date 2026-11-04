@@ -20,6 +20,8 @@ const (
 	prefAdminMention = "admin_mention"  // "@admin" in the mention picker
 	prefRawPhotos    = "raw_photos"     // Raw quality for photos
 	prefEditHistory  = "edit_history"   // the earlier texts of edited messages (edit.go)
+	prefAlwaysQuote  = model.PrefAlwaysQuote
+	prefIATagPrivate = model.PrefIATagPrivate
 )
 
 // grayCmdPref is the preference that turns on a gray command.
@@ -47,6 +49,8 @@ func (u *UI) loadExtras() {
 	u.adminMention = extraOn(b, prefAdminMention)
 	u.rawPhotos = extraOn(b, prefRawPhotos)
 	u.editHistory = extraOn(b, prefEditHistory)
+	u.alwaysQuote = extraOn(b, prefAlwaysQuote)
+	u.iaTagPrivate = extraOn(b, prefIATagPrivate)
 	u.keepDeleted = extraOn(b, model.PrefKeepDeleted)
 	u.downloadStatusUpdates = extraOn(b, model.PrefDownloadStatusUpdates)
 	u.viewOnceReplay = extraOn(b, model.PrefViewOnceReplay)
@@ -165,6 +169,12 @@ func (u *UI) extrasSettings() []settingsSection {
 				&u.adminMention, nil),
 		}},
 		u.privacyExtras(),
+		{title: u.locale.Text("Messages"), rows: []settingRow{
+			u.extraToggle(prefAlwaysQuote, u.locale.Text("Always quote WhatsApp"), u.locale.Text("Automatically quote the latest message in private chats and mention 0@s.whatsapp.net in group messages."),
+				&u.alwaysQuote, nil),
+			u.extraToggle(prefIATagPrivate, u.locale.Text("Add IA tag on private chats"), u.locale.Text("Append [IA] to text messages and file captions in private chats."),
+				&u.iaTagPrivate, nil),
+		}},
 		{title: u.locale.Text("Photos"), rows: []settingRow{
 			u.extraToggle(prefRawPhotos, u.locale.Text("Raw quality"), u.locale.Text("Offer Raw when sending photos: JPEG and PNG files go as they are, not scaled or compressed"),
 				&u.rawPhotos, func() {

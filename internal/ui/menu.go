@@ -140,7 +140,7 @@ func (u *UI) layoutMenu(gtx C) {
 								children := []layout.FlexChild{
 									layout.Rigid(iconW(it.ic, 20, p.Icon)),
 									layout.Rigid(layout.Spacer{Width: 14}.Layout),
-									layout.Flexed(1, u.label(15, it.label, p.Text).Layout),
+									layout.Flexed(1, u.label(15, u.locale.Text(it.label), p.Text).Layout),
 								}
 								if it.more {
 									children = append(children, layout.Rigid(iconW(icChevronRight, 20, p.Icon)))

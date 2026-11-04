@@ -48,7 +48,7 @@ func (u *UI) layoutSidebarHeader(gtx C) D {
 				return layout.Flex{Alignment: layout.Middle}.Layout(gtx,
 					layout.Rigid(func(gtx C) D { return u.iconButton(gtx, &u.sidebar.back, icBack, 40, 24, p.Icon) }),
 					layout.Rigid(layout.Spacer{Width: 10}.Layout),
-					layout.Flexed(1, u.label(19, "Archived", p.Text, labelOpts{weight: font.SemiBold, maxLines: 1}).Layout),
+					layout.Flexed(1, u.label(19, u.locale.Text("Archived"), p.Text, labelOpts{weight: font.SemiBold, maxLines: 1}).Layout),
 				)
 			})
 		})
@@ -671,7 +671,7 @@ func (u *UI) previewParts(c *model.Chat, last *model.Message) []layout.FlexChild
 	case len(c.Typing) > 0:
 		children = append(children, layout.Flexed(1, u.label(size, typingText(c), p.Green, labelOpts{maxLines: 1}).Layout))
 	case u.drafts[c.ID] != nil:
-		children = append(children, layout.Rigid(u.label(size, "Draft: ", p.Green).Layout))
+		children = append(children, layout.Rigid(u.label(size, u.locale.Text("Draft: "), p.Green).Layout))
 		ic, txt := draftPreview(u.drafts[c.ID])
 		if ic != nil {
 			children = append(children, small(ic, p.TextSecondary, 18, 4))

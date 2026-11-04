@@ -15,11 +15,11 @@ var errNoAuto = errors.New("This can't be done here.")
 
 func runSchedule(c *Context) error {
 	if c.Auto == nil {
-		return errNoAuto
+		return errors.New(c.T(errNoAuto.Error()))
 	}
 	at, err := ParseWhen(c.Text("when"), c.Now)
 	if err != nil {
-		return errors.New(sentence(err))
+		return errors.New(sentence(errors.New(c.T(err.Error()))))
 	}
 	text := strings.TrimSpace(c.Text("message"))
 	d := c.Draft(text)
@@ -55,24 +55,24 @@ func previewSchedule(in *Input) (string, bool) {
 // jobNote shows a scheduled message, with buttons to send it now or
 // cancel it.
 func jobNote(c *Context, j auto.Job) {
-	n := &Note{Title: c.Input, Text: "Sends " + DescribeWhen(j.At, c.Now) + ":\n" + j.Shown}
-	gone := func() { n.Text, n.Buttons = "It was sent already:\n"+j.Shown, nil }
+	n := &Note{Title: c.Input, Text: c.T("Sends ") + DescribeWhen(j.At, c.Now) + ":\n" + j.Shown}
+	gone := func() { n.Text, n.Buttons = c.T("It was sent already:\n")+j.Shown, nil }
 	n.Buttons = []Button{
-		{Label: "Send now", Run: func() {
+		{Label: c.T("Send now"), Run: func() {
 			m := c.Auto.SendNow(j.ID)
 			if m == nil {
 				gone()
 				return
 			}
 			c.Sent(m)
-			n.Text, n.Buttons = "Sent:\n"+j.Shown, nil
+			n.Text, n.Buttons = c.T("Sent:\n")+j.Shown, nil
 		}},
-		{Label: "Cancel", Danger: true, Run: func() {
+		{Label: c.T("Cancel"), Danger: true, Run: func() {
 			if !c.Auto.Cancel(j.ID) {
 				gone()
 				return
 			}
-			n.Text, n.Buttons = "Cancelled:\n"+j.Shown, nil
+			n.Text, n.Buttons = c.T("Cancelled:\n")+j.Shown, nil
 		}},
 	}
 	c.Note(n)
@@ -83,7 +83,7 @@ const maxListed = 10
 
 func runScheduled(c *Context) error {
 	if c.Auto == nil {
-		return errNoAuto
+		return errors.New(c.T(errNoAuto.Error()))
 	}
 	jobs := c.Auto.Jobs(c.Chat.ID)
 	others := len(c.Auto.Jobs("")) - len(jobs)
@@ -93,14 +93,14 @@ func runScheduled(c *Context) error {
 			" " + c.T("scheduled in other chats.")
 	}
 	if len(jobs) == 0 {
-		c.Note(&Note{Title: c.Input, Text: strings.TrimSpace("Nothing is scheduled in this chat. " + elsewhere)})
+		c.Note(&Note{Title: c.Input, Text: strings.TrimSpace(c.T("Nothing is scheduled in this chat. ") + elsewhere)})
 		return nil
 	}
 	for _, j := range jobs[:min(len(jobs), maxListed)] {
 		jobNote(c, j)
 	}
 	if more := len(jobs) - maxListed; more > 0 {
-		elsewhere = strings.TrimSpace("And " + strconv.Itoa(more) + " more. " + elsewhere)
+		elsewhere = strings.TrimSpace(c.T("And ") + strconv.Itoa(more) + c.T(" more. ") + elsewhere)
 	}
 	if elsewhere != "" {
 		c.Note(&Note{Title: c.Input, Text: elsewhere})
@@ -113,12 +113,12 @@ func runAFK(c *Context) error {
 		return errNoAuto
 	}
 	c.Auto.SetAway(strings.TrimSpace(c.Text("reason")))
-	n := &Note{Title: c.Input, Text: "You're AFK until you send a message. Whoever messages you, or mentions you " +
-		"in a group, gets this reply once:\n" + auto.AwayPlain(c.Auto.Away(), c.Now)}
-	n.Buttons = []Button{{Label: "I'm back", Run: func() {
+	n := &Note{Title: c.Input, Text: c.T("You're AFK until you send a message. Whoever messages you, or mentions you ") +
+		c.T("in a group, gets this reply once:\n") + auto.AwayPlain(c.Auto.Away(), c.Now)}
+	n.Buttons = []Button{{Label: c.T("I'm back"), Run: func() {
 		n.Buttons = nil
 		if c.Auto.Away() == nil {
-			n.Text = "You were back already."
+			n.Text = c.T("You were back already.")
 			return
 		}
 		n.Text = auto.BackText(c.Auto.Back())
